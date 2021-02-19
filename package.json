@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "del-cli .next",
     "format": "tsdx lint . --fix",
-    "test": "tsdx lint .",
+    "test": "npm run format",
     "build": "npm run test && cross-env NODE_ENV=production next build",
     "analyze": "cross-env NODE_ENV=production ANALYZE=true next build",
     "start": "cross-env NODE_ENV=production next start",
