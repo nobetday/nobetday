@@ -1,9 +1,20 @@
 @charset "utf-8";
 
 $body-background-color: #E6E6E6;
+$primary: #3C735F;
+$link: $primary;
+$navbar-height: 3.5rem;
 
 @import "../../node_modules/bulma/bulma.sass";
 
 main {
   min-height: 20rem;
+}
+
+.navbar-brand {
+  margin-left: 0 !important;
+}
+
+.navbar-brand .navbar-item {
+  background-color: inherit !important;
 }
