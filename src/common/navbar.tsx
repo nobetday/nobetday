@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { FunctionComponent, useState } from 'react'
 
+import { ButtonLink } from '@/common/button-link'
 import { TextLink, TextLinkProps } from '@/common/text-link'
 import { uiConstants } from '@/common/ui-constants'
 
@@ -63,8 +64,12 @@ const NavbarStart: FunctionComponent = () => {
 
 const NavbarEnd: FunctionComponent = () => {
   return (
-    <div className='navbar-end mx-3 py-1'>
-      <div className='navbar-item'></div>
+    <div className='navbar-end mx-3'>
+      <div className='navbar-item'>
+        <ButtonLink href='/signin' className='is-dark'>
+          SIGN IN
+        </ButtonLink>
+      </div>
     </div>
   )
 }

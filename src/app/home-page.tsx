@@ -11,7 +11,7 @@ export const HomePage: NextPage = () => {
       <PageHead title='Home' />
       <Navbar />
       <main>
-        <section className='hero is-dark is-medium'>
+        <section className='hero is-info is-medium'>
           <div className='hero-body'>
             <ContentBox>
               <h1 className='title'>Resources and Tools for Quitting Gambling</h1>
