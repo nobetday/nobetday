@@ -20,4 +20,16 @@ export const quoteData: Quote[] = [
     content: `By gaming we lose both our time and treasure - two things most precious to the life of man.`,
     author: `Owen Feltham`,
   },
+  {
+    content: `A gambler is nothing but a man who makes his living out of false hope.`,
+    author: `William Bolitho`,
+  },
+  {
+    content: `Show me a gambler and I’ll show you a loser.`,
+    author: `Mario Puzo`,
+  },
+  {
+    content: `In gambling, the many must lose in order that the few may win.`,
+    author: `George Bernard Shaw`,
+  },
 ]
