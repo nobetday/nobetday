@@ -3,3 +3,7 @@
 $body-background-color: #E6E6E6;
 
 @import "../../node_modules/bulma/bulma.sass";
+
+main {
+  min-height: 20rem;
+}
