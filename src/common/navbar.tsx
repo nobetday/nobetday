@@ -1,7 +1,8 @@
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 import { FunctionComponent, useState } from 'react'
 
-import { TextLink } from '@/common/text-link'
+import { TextLink, TextLinkProps } from '@/common/text-link'
 import { uiConstants } from '@/common/ui-constants'
 
 const navbarColor = 'is-primary'
@@ -26,8 +27,38 @@ const NavbarBurger: FunctionComponent<NavbarBurgerProps> = ({ isMenuActive, setM
   )
 }
 
+interface NavbarTextLinkProps extends TextLinkProps {
+  readonly href: string
+  readonly currentPath: string
+}
+
+const NavbarTextLink: FunctionComponent<NavbarTextLinkProps> = ({ href, currentPath, className, ...otherProps }) => {
+  const isActive = currentPath.startsWith(href)
+
+  return (
+    <TextLink href={href} className={clsx('navbar-item px-5', isActive && 'is-active', className)} {...otherProps} />
+  )
+}
+
 const NavbarStart: FunctionComponent = () => {
-  return <div className='navbar-start'></div>
+  const currentPath = useRouter().pathname
+
+  return (
+    <div className='navbar-start'>
+      <NavbarTextLink href='/stories' currentPath={currentPath}>
+        Stories
+      </NavbarTextLink>
+      <NavbarTextLink href='/quotes' currentPath={currentPath}>
+        Quotes
+      </NavbarTextLink>
+      <NavbarTextLink href='/tracker' currentPath={currentPath}>
+        Tracker
+      </NavbarTextLink>
+      <NavbarTextLink href='/calculator' currentPath={currentPath}>
+        Calculator
+      </NavbarTextLink>
+    </div>
+  )
 }
 
 const NavbarEnd: FunctionComponent = () => {
