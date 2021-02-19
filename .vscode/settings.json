@@ -1,0 +1,11 @@
+{
+  "editor.tabSize": 2,
+  "eslint.options": {
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "env": {
+      "es6": true
+    }
+  }
+}

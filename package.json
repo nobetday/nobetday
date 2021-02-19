@@ -1,0 +1,33 @@
+{
+  "name": "nobetday",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "clean": "del-cli .next",
+    "format": "tsdx lint . --fix",
+    "test": "tsdx lint .",
+    "build": "npm run test && cross-env NODE_ENV=production next build",
+    "analyze": "cross-env NODE_ENV=production ANALYZE=true next build",
+    "start": "cross-env NODE_ENV=production next start",
+    "dev": "cross-env NODE_ENV=development next -p 7000"
+  },
+  "engines": {
+    "node": "14.15.5"
+  },
+  "dependencies": {
+    "@next/bundle-analyzer": "10.0.7",
+    "next": "10.0.7",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.2",
+    "@types/webpack-env": "1.16.0",
+    "cross-env": "7.0.3",
+    "del-cli": "3.0.1",
+    "eslint-plugin-no-null": "1.0.2",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "next-compose-plugins": "2.2.1",
+    "tsdx": "0.14.1"
+  }
+}
