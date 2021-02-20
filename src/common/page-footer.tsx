@@ -5,7 +5,7 @@ import { uiConstants } from '@/common/ui-constants'
 
 export const PageFooter: FunctionComponent = () => {
   return (
-    <footer className='has-background-light mt-6'>
+    <footer className='has-background-light'>
       <ContentBox>
         <strong className='ml-1'>{uiConstants.appName}</strong>
       </ContentBox>
