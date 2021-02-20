@@ -52,11 +52,11 @@ const NavbarStart: FunctionComponent = () => {
       <NavbarTextLink href='/quotes' currentPath={currentPath}>
         Quotes
       </NavbarTextLink>
-      <NavbarTextLink href='/tracker' currentPath={currentPath}>
-        Tracker
+      <NavbarTextLink href='/trackers' currentPath={currentPath}>
+        Trackers
       </NavbarTextLink>
-      <NavbarTextLink href='/calculator' currentPath={currentPath}>
-        Calculator
+      <NavbarTextLink href='/calculators' currentPath={currentPath}>
+        Calculators
       </NavbarTextLink>
     </div>
   )
