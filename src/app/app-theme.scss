@@ -9,7 +9,11 @@ $navbar-item-hover-background-color: $body-background-color;
 @import "../../node_modules/bulma/bulma.sass";
 
 main {
-  min-height: 100vh;
+  min-height: 70vh;
+}
+
+footer {
+  padding: 10rem 0;
 }
 
 .navbar-brand {
