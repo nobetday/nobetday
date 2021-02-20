@@ -82,7 +82,7 @@ export const Navbar: FunctionComponent = () => {
       <div className='container'>
         <div className='navbar-brand'>
           <TextLink href='/' className='navbar-item mr-5'>
-            <strong>{uiConstants.appName}</strong>
+            <strong className='is-size-4'>{uiConstants.appName}</strong>
           </TextLink>
           <NavbarBurger isMenuActive={isMenuActive} setMenuActive={setMenuActive} />
         </div>

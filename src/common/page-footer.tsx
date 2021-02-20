@@ -7,7 +7,7 @@ export const PageFooter: FunctionComponent = () => {
   return (
     <footer className='has-background-light'>
       <ContentBox>
-        <strong className='ml-1'>{uiConstants.appName}</strong>
+        <strong className='is-size-4 ml-1'>{uiConstants.appName}</strong>
       </ContentBox>
     </footer>
   )
