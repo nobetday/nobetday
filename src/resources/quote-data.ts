@@ -25,7 +25,7 @@ export const quoteData: Quote[] = [
     author: `William Bolitho`,
   },
   {
-    content: `Show me a gambler and I’ll show you a loser.`,
+    content: `He was a degenerate gambler. That is, a man who gambled simply to gamble and must lose. As a hero who goes to war must die. Show me a gambler and I'll show you a loser, show me a hero and I'll show you a corpse.`,
     author: `Mario Puzo`,
   },
   {
