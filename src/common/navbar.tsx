@@ -37,7 +37,11 @@ const NavbarTextLink: FunctionComponent<NavbarTextLinkProps> = ({ href, currentP
   const isActive = currentPath.startsWith(href)
 
   return (
-    <TextLink href={href} className={clsx('navbar-item px-5', isActive && 'is-active', className)} {...otherProps} />
+    <TextLink
+      href={href}
+      className={clsx('navbar-item is-size-5 px-5', isActive && 'is-active', className)}
+      {...otherProps}
+    />
   )
 }
 
@@ -65,7 +69,7 @@ const NavbarStart: FunctionComponent = () => {
 const NavbarEnd: FunctionComponent = () => {
   return (
     <div className='navbar-end mx-3'>
-      <div className='navbar-item'>
+      <div className='navbar-item py-0'>
         <ButtonLink href='/signin' className='is-dark'>
           SIGN IN
         </ButtonLink>
