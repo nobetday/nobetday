@@ -44,11 +44,13 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ quoteOfTheDay, oth
 
 export const getQuoteListPageStaticProps: GetStaticProps = async () => {
   const quoteOfTheDayIndex = randomInt.source(getDailyRandomSource())(0, quotes.length)()
+  const otherQuotes = [...quotes]
+  otherQuotes.splice(quoteOfTheDayIndex, 1)
 
   return {
     props: {
       quoteOfTheDay: quotes[quoteOfTheDayIndex],
-      otherQuotes: [...quotes.slice(quoteOfTheDayIndex + 1), ...quotes.slice(0, quoteOfTheDayIndex)],
+      otherQuotes: otherQuotes.reverse(),
     },
   }
 }
