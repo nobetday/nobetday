@@ -3,7 +3,7 @@
 $body-background-color: #E6E6E6;
 $primary: #3C735F;
 $link: $primary;
-$navbar-height: 3.6rem;
+$navbar-height: 3.8rem;
 $navbar-item-hover-background-color: $body-background-color;
 
 @import "../../node_modules/bulma/bulma.sass";
@@ -26,5 +26,5 @@ footer {
 }
 
 .navbar-end .button {
-  font-size: 17px;
+  font-size: 18px;
 }
