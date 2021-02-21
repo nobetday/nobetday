@@ -3,7 +3,7 @@ export interface Quote {
   readonly author: string
 }
 
-export const quoteData: Quote[] = [
+export const quotes: Quote[] = [
   {
     content: `Quit while you're ahead. All the best gamblers do.`,
     author: `Baltasar Gracián`,
@@ -14,7 +14,7 @@ export const quoteData: Quote[] = [
   },
   {
     content: `Nobody has ever bet enough on a winning horse.`,
-    author: `** Proverb **`,
+    author: `[Proverb]`,
   },
   {
     content: `By gaming we lose both our time and treasure - two things most precious to the life of man.`,
