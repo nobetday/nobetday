@@ -1,11 +1,10 @@
 import clsx from 'clsx'
-import { randomInt } from 'd3-random'
+import { randomInt, randomLcg } from 'd3-random'
 import { GetStaticProps, NextPage } from 'next'
 import { FunctionComponent } from 'react'
 
 import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
-import { getDailyRandomSource } from '@/common/random'
 import { Quote, quotes } from '@/resources/quote-data'
 
 export interface QuoteListPageProps {
@@ -43,7 +42,7 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ quoteOfTheDay, oth
 }
 
 export const getQuoteListPageStaticProps: GetStaticProps = async () => {
-  const quoteOfTheDayIndex = randomInt.source(getDailyRandomSource())(0, quotes.length)()
+  const quoteOfTheDayIndex = randomInt.source(randomLcg(quotes.length))(0, quotes.length)()
   const otherQuotes = [...quotes]
   otherQuotes.splice(quoteOfTheDayIndex, 1)
 
