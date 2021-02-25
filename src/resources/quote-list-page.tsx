@@ -14,12 +14,12 @@ export interface QuoteListPageProps {
 
 interface QuoteDisplayProps {
   readonly quote: Quote
-  readonly isSpecial?: boolean
+  readonly isFeatured?: boolean
 }
 
-const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isSpecial = false }) => {
+const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isFeatured = false }) => {
   return (
-    <article className={clsx('message mb-5', isSpecial ? 'is-info is-large' : 'is-dark is-medium')}>
+    <article className={clsx('message mb-5', isFeatured ? 'is-info is-large' : 'is-dark is-medium')}>
       <div className='message-header'>{quote.author}</div>
       <div className='message-body is-size-4'>{quote.content}</div>
     </article>
@@ -31,7 +31,7 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ quoteOfTheDay, oth
     <PageLayout title='Quotes'>
       <ContentBox>
         <h2 className='subtitle is-2'>Quote of the Day</h2>
-        <QuoteDisplay quote={quoteOfTheDay} isSpecial />
+        <QuoteDisplay quote={quoteOfTheDay} isFeatured />
         <h2 className='subtitle is-2'>Other Quotes</h2>
         {otherQuotes.map((quote, index) => (
           <QuoteDisplay key={index} quote={quote} />
