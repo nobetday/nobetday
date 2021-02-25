@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-$body-background-color: #F1F1F1;
+$body-background-color: #EEE;
 $primary: #3C735F;
 $link: $primary;
 $navbar-height: 3.8rem;
@@ -13,6 +13,8 @@ main {
 }
 
 footer {
+  background-color: $dark-invert;
+  color: $dark;
   margin-top: 4rem;
   padding: 10rem 0;
 }
@@ -27,4 +29,8 @@ footer {
 
 .navbar-end .button {
   font-size: 18px;
+}
+
+.message.is-dark {
+  background-color: $dark-invert;
 }
