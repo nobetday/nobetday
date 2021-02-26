@@ -3,6 +3,7 @@
 $body-background-color: #EEE;
 $primary: #3C735F;
 $link: $primary;
+$info: #4687C8;
 $navbar-height: 3.8rem;
 $navbar-item-hover-background-color: $body-background-color;
 
@@ -13,8 +14,6 @@ main {
 }
 
 footer {
-  background-color: $dark-invert;
-  color: $dark;
   margin-top: 4rem;
   padding: 10rem 0;
 }
@@ -29,8 +28,4 @@ footer {
 
 .navbar-end .button {
   font-size: 18px;
-}
-
-.message.is-dark {
-  background-color: $dark-invert;
 }
