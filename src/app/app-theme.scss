@@ -6,7 +6,7 @@ $link: $primary;
 $navbar-height: 3.8rem;
 $navbar-item-hover-background-color: $body-background-color;
 
-@import "../../node_modules/bulma/bulma.sass";
+@import "~bulma/bulma.sass";
 
 main {
   min-height: 70vh;
