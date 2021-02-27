@@ -5,12 +5,12 @@ export interface Story {
   readonly url: string
   readonly title: string
   readonly summary: string
-  readonly photoUrl: string
+  readonly imageUrl: string
 }
 
 export const getStories = (): Story[] => {
-  return stories.map(({ id, url, title, summary, photoUrl }) => {
-    if (!id || !url || !title || !summary || !photoUrl) {
+  return stories.map(({ id, url, title, summary, imageUrl }) => {
+    if (!id || !url || !title || !summary || !imageUrl) {
       throw new Error('Invalid story')
     }
 
@@ -19,7 +19,7 @@ export const getStories = (): Story[] => {
       url,
       title,
       summary,
-      photoUrl,
+      imageUrl,
     }
   })
 }

@@ -17,7 +17,7 @@ const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story, isFeatured 
     <div className='card'>
       <div className='card-image'>
         <figure className='image is-16by9'>
-          <img src={story.photoUrl} alt={story.title} />
+          <img src={story.imageUrl} alt={story.title} />
         </figure>
       </div>
       <div className='card-content'>

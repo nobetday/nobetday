@@ -19,7 +19,7 @@ const addStory = () => {
     url: 'URL',
     title: 'TITLE',
     summary: 'SUMMARY',
-    photoUrl: 'PHOTO_URL',
+    imageUrl: 'IMAGE_URL',
   })
 
   fs.writeFileSync(storyListPath, `${JSON.stringify(stories, undefined, 2)}\n`)
