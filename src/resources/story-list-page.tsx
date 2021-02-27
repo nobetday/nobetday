@@ -24,7 +24,7 @@ const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story, isFeatured 
         <h3 className={clsx('subtitle', isFeatured ? 'is-2' : 'is-3')}>{story.title}</h3>
         <p className={isFeatured ? 'is-size-4' : 'is-size-5'}>{story.summary}</p>
         <div className='has-text-right mt-4'>
-          <a href={story.url} className={clsx('button', isFeatured ? 'is-medium is-info' : 'is-dark')}>
+          <a href={story.url} className={clsx('button', isFeatured ? 'is-info is-medium' : 'is-dark')}>
             READ MORE
           </a>
         </div>
