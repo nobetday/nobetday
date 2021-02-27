@@ -1,13 +1,18 @@
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
 import { ContentBox } from '@/common/content-box'
 import { uiConstants } from '@/common/ui-constants'
 
-export const PageFooter: FunctionComponent = () => {
+export interface PageFooterProps {
+  readonly className?: string
+}
+
+export const PageFooter: FunctionComponent<PageFooterProps> = ({ className }) => {
   return (
-    <footer className='has-background-info-light'>
+    <footer className={clsx('has-background-info-light', className)}>
       <ContentBox>
         <div className='block'>
           <strong className='is-size-4 ml-1'>{uiConstants.appName}</strong>

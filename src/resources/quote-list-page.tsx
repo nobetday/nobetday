@@ -19,7 +19,7 @@ interface QuoteDisplayProps {
 
 const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isFeatured = false }) => {
   return (
-    <article className={clsx('message mb-5', isFeatured ? 'is-info is-large' : 'is-dark is-medium')}>
+    <article className={clsx('message', isFeatured ? 'is-info is-large' : 'is-dark is-medium')}>
       <div className='message-header'>{quote.author}</div>
       <div className='message-body is-size-4'>{quote.content}</div>
     </article>
