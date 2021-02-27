@@ -5,7 +5,7 @@ import { FunctionComponent } from 'react'
 
 import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
-import { Quote, quotes } from '@/resources/quote-data'
+import { getQuotes, Quote } from '@/resources/quote-data'
 
 export interface QuoteListPageProps {
   readonly quoteOfTheDay: Quote
@@ -14,12 +14,12 @@ export interface QuoteListPageProps {
 
 interface QuoteDisplayProps {
   readonly quote: Quote
-  readonly isSpecial?: boolean
+  readonly isFeatured?: boolean
 }
 
-const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isSpecial = false }) => {
+const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isFeatured = false }) => {
   return (
-    <article className={clsx('message mb-5', isSpecial ? 'is-info is-large' : 'is-dark is-medium')}>
+    <article className={clsx('message', isFeatured ? 'is-info is-large' : 'is-dark is-medium')}>
       <div className='message-header'>{quote.author}</div>
       <div className='message-body is-size-4'>{quote.content}</div>
     </article>
@@ -31,10 +31,10 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ quoteOfTheDay, oth
     <PageLayout title='Quotes'>
       <ContentBox>
         <h2 className='subtitle is-2'>Quote of the Day</h2>
-        <QuoteDisplay quote={quoteOfTheDay} isSpecial />
+        <QuoteDisplay quote={quoteOfTheDay} isFeatured />
         <h2 className='subtitle is-2'>Other Quotes</h2>
-        {otherQuotes.map((quote, index) => (
-          <QuoteDisplay key={index} quote={quote} />
+        {otherQuotes.map((quote) => (
+          <QuoteDisplay key={quote.id} quote={quote} />
         ))}
       </ContentBox>
     </PageLayout>
@@ -42,6 +42,7 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ quoteOfTheDay, oth
 }
 
 export const getQuoteListPageStaticProps: GetStaticProps = async () => {
+  const quotes = getQuotes()
   const quoteOfTheDayIndex = randomInt.source(randomLcg(quotes.length))(0, quotes.length)()
   const otherQuotes = [...quotes]
   otherQuotes.splice(quoteOfTheDayIndex, 1)
