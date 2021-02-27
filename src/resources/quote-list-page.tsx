@@ -7,11 +7,6 @@ import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { getQuotes, Quote } from '@/resources/quote-data'
 
-export interface QuoteListPageProps {
-  readonly quoteOfTheDay: Quote
-  readonly otherQuotes: Quote[]
-}
-
 interface QuoteDisplayProps {
   readonly quote: Quote
   readonly isFeatured?: boolean
@@ -24,6 +19,11 @@ const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isFeatured 
       <div className='message-body is-size-4'>{quote.content}</div>
     </article>
   )
+}
+
+export interface QuoteListPageProps {
+  readonly quoteOfTheDay: Quote
+  readonly otherQuotes: Quote[]
 }
 
 export const QuoteListPage: NextPage<QuoteListPageProps> = ({ quoteOfTheDay, otherQuotes }) => {
