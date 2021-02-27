@@ -5,7 +5,7 @@ import { FunctionComponent } from 'react'
 
 import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
-import { stories, Story } from '@/resources/story-data'
+import { getStories, Story } from '@/resources/story-data'
 
 export interface StoryListPageProps {
   readonly storyOfTheDay: Story
@@ -14,23 +14,27 @@ export interface StoryListPageProps {
 
 interface StoryDisplayProps {
   readonly story: Story
-  readonly isSpecial?: boolean
+  readonly isFeatured?: boolean
 }
 
-const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story, isSpecial = false }) => {
+const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story, isFeatured = false }) => {
   return (
-    <a href={story.url}>
-      <div className='card mb-5'>
-        <header className='card-header'>
-          <p className={clsx('card-header-title notification is-size-4', isSpecial ? 'is-info' : 'is-dark')}>
-            {story.title}
-          </p>
-        </header>
-        <div className='card-content'>
-          <div className='content is-size-4'>{story.description}</div>
+    <div className='card'>
+      <div className='card-image'>
+        <figure className='image is-16by9'>
+          <img src={story.photoUrl} alt={story.title} />
+        </figure>
+      </div>
+      <div className='card-content'>
+        <h3 className={clsx('subtitle', isFeatured ? 'is-2' : 'is-3')}>{story.title}</h3>
+        <p className={isFeatured ? 'is-size-4' : 'is-size-5'}>{story.summary}</p>
+        <div className='has-text-right mt-4'>
+          <a href={story.url} className={clsx('button', isFeatured ? 'is-medium is-info' : 'is-dark')}>
+            READ MORE
+          </a>
         </div>
       </div>
-    </a>
+    </div>
   )
 }
 
@@ -39,17 +43,26 @@ export const StoryListPage: NextPage<StoryListPageProps> = ({ storyOfTheDay, oth
     <PageLayout title='Stories'>
       <ContentBox>
         <h2 className='subtitle is-2'>Story of the Day</h2>
-        <StoryDisplay story={storyOfTheDay} isSpecial />
+        <div className='columns is-centered'>
+          <div className='column is-two-thirds'>
+            <StoryDisplay story={storyOfTheDay} isFeatured />
+          </div>
+        </div>
         <h2 className='subtitle is-2'>Other Stories</h2>
-        {otherStories.map((story, index) => (
-          <StoryDisplay key={index} story={story} />
-        ))}
+        <div className='columns is-multiline'>
+          {otherStories.map((story) => (
+            <div key={story.id} className='column is-half'>
+              <StoryDisplay story={story} />
+            </div>
+          ))}
+        </div>
       </ContentBox>
     </PageLayout>
   )
 }
 
 export const getStoryListPageStaticProps: GetStaticProps = async () => {
+  const stories = getStories()
   const storyOfTheDayIndex = randomInt.source(randomLcg(stories.length))(0, stories.length)()
   const otherStories = [...stories]
   otherStories.splice(storyOfTheDayIndex, 1)

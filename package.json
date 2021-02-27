@@ -10,6 +10,7 @@
     "analyze": "cross-env NODE_ENV=production ANALYZE=true next build",
     "start": "cross-env NODE_ENV=production next start",
     "dev": "cross-env NODE_ENV=development next -p 7000",
+    "story": "node scripts/story-cli",
     "quote": "node scripts/quote-cli"
   },
   "engines": {
