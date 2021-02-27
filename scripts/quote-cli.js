@@ -2,11 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const { customAlphabet } = require('nanoid')
 
-const quoteDataPath = path.join(__dirname, '../src/resources/quotes.json')
+const quoteListPath = path.join(__dirname, '../src/resources/quotes.json')
 const getQuoteId = customAlphabet('1234567890', 10)
 
 const addQuote = () => {
-  const quotes = require(quoteDataPath)
+  const quotes = require(quoteListPath)
   const existingQuoteIds = quotes.map(({ id }) => id)
 
   let quoteId = getQuoteId()
@@ -20,10 +20,10 @@ const addQuote = () => {
     author: 'AUTHOR',
   })
 
-  fs.writeFileSync(quoteDataPath, `${JSON.stringify(quotes, undefined, 2)}\n`)
+  fs.writeFileSync(quoteListPath, `${JSON.stringify(quotes, undefined, 2)}\n`)
 }
 
-const quoteScript = (argv) => {
+const quoteCli = (argv) => {
   if (argv[0] === 'add') {
     addQuote()
     return
@@ -31,5 +31,5 @@ const quoteScript = (argv) => {
 }
 
 if (require.main === module) {
-  quoteScript(process.argv.slice(2))
+  quoteCli(process.argv.slice(2))
 }
