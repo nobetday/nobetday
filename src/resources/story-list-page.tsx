@@ -7,11 +7,6 @@ import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { getStories, Story } from '@/resources/story-data'
 
-export interface StoryListPageProps {
-  readonly storyOfTheDay: Story
-  readonly otherStories: Story[]
-}
-
 interface StoryDisplayProps {
   readonly story: Story
   readonly isFeatured?: boolean
@@ -36,6 +31,11 @@ const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story, isFeatured 
       </div>
     </div>
   )
+}
+
+export interface StoryListPageProps {
+  readonly storyOfTheDay: Story
+  readonly otherStories: Story[]
 }
 
 export const StoryListPage: NextPage<StoryListPageProps> = ({ storyOfTheDay, otherStories }) => {
