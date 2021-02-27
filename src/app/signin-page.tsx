@@ -11,7 +11,7 @@ export const SignInPage: NextPage = () => {
     <>
       <PageHead title='Sign In' />
       <main>
-        <ContentBox className='has-text-centered mb-5'>
+        <ContentBox className='has-text-centered block'>
           <TextLink href='/' className='is-size-1'>
             {uiConstants.appName}
           </TextLink>
