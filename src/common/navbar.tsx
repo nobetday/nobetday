@@ -56,12 +56,6 @@ const NavbarStart: FunctionComponent = () => {
       <NavbarTextLink href='/quotes' currentPath={currentPath}>
         Quotes
       </NavbarTextLink>
-      <NavbarTextLink href='/trackers' currentPath={currentPath}>
-        Trackers
-      </NavbarTextLink>
-      <NavbarTextLink href='/calculators' currentPath={currentPath}>
-        Calculators
-      </NavbarTextLink>
     </div>
   )
 }
