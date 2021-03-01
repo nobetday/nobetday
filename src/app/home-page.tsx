@@ -18,6 +18,9 @@ export const HomePage: NextPage = () => {
             </ContentBox>
           </div>
         </section>
+        <section className='hero is-white is-large'>
+          <div className='hero-body'></div>
+        </section>
       </main>
       <PageFooter />
     </>
