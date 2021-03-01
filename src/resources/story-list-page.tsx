@@ -1,37 +1,9 @@
-import clsx from 'clsx'
-import { randomInt, randomLcg } from 'd3-random'
 import { GetStaticProps, NextPage } from 'next'
-import { FunctionComponent } from 'react'
 
 import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
-import { getStories, Story } from '@/resources/story-data'
-
-interface StoryDisplayProps {
-  readonly story: Story
-  readonly isFeatured?: boolean
-}
-
-const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story, isFeatured = false }) => {
-  return (
-    <div className='card'>
-      <div className='card-image'>
-        <figure className='image is-16by9'>
-          <img src={story.imageUrl} alt={story.title} />
-        </figure>
-      </div>
-      <div className='card-content'>
-        <h3 className={clsx('subtitle', isFeatured ? 'is-2' : 'is-3')}>{story.title}</h3>
-        <p className={isFeatured ? 'is-size-4' : 'is-size-5'}>{story.summary}</p>
-        <div className='has-text-right mt-4'>
-          <a href={story.url} className={clsx('button', isFeatured ? 'is-info is-medium' : 'is-dark')}>
-            READ MORE
-          </a>
-        </div>
-      </div>
-    </div>
-  )
-}
+import { getFeaturedStory, getOtherStories, getStories, Story } from '@/resources/story-data'
+import { StoryDisplay } from '@/resources/story-display'
 
 export interface StoryListPageProps {
   readonly featuredStory: Story
@@ -63,14 +35,11 @@ export const StoryListPage: NextPage<StoryListPageProps> = ({ featuredStory, oth
 
 export const getStoryListPageStaticProps: GetStaticProps = async () => {
   const stories = getStories()
-  const featuredStoryIndex = randomInt.source(randomLcg(stories.length))(0, stories.length)()
-  const otherStories = [...stories]
-  otherStories.splice(featuredStoryIndex, 1)
 
   return {
     props: {
-      featuredStory: stories[featuredStoryIndex],
-      otherStories: otherStories.reverse(),
+      featuredStory: getFeaturedStory(stories),
+      otherStories: getOtherStories(stories),
     },
   }
 }
