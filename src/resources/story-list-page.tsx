@@ -34,18 +34,18 @@ const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story, isFeatured 
 }
 
 export interface StoryListPageProps {
-  readonly storyOfTheDay: Story
+  readonly featuredStory: Story
   readonly otherStories: Story[]
 }
 
-export const StoryListPage: NextPage<StoryListPageProps> = ({ storyOfTheDay, otherStories }) => {
+export const StoryListPage: NextPage<StoryListPageProps> = ({ featuredStory, otherStories }) => {
   return (
     <PageLayout title='Stories'>
       <ContentBox>
-        <h2 className='subtitle is-2'>Story of the Day</h2>
+        <h2 className='subtitle is-2'>Featured Story</h2>
         <div className='columns is-centered'>
           <div className='column is-two-thirds'>
-            <StoryDisplay story={storyOfTheDay} isFeatured />
+            <StoryDisplay story={featuredStory} isFeatured />
           </div>
         </div>
         <h2 className='subtitle is-2'>Other Stories</h2>
@@ -63,13 +63,13 @@ export const StoryListPage: NextPage<StoryListPageProps> = ({ storyOfTheDay, oth
 
 export const getStoryListPageStaticProps: GetStaticProps = async () => {
   const stories = getStories()
-  const storyOfTheDayIndex = randomInt.source(randomLcg(stories.length))(0, stories.length)()
+  const featuredStoryIndex = randomInt.source(randomLcg(stories.length))(0, stories.length)()
   const otherStories = [...stories]
-  otherStories.splice(storyOfTheDayIndex, 1)
+  otherStories.splice(featuredStoryIndex, 1)
 
   return {
     props: {
-      storyOfTheDay: stories[storyOfTheDayIndex],
+      featuredStory: stories[featuredStoryIndex],
       otherStories: otherStories.reverse(),
     },
   }

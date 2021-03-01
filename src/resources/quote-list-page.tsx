@@ -22,16 +22,16 @@ const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isFeatured 
 }
 
 export interface QuoteListPageProps {
-  readonly quoteOfTheDay: Quote
+  readonly featuredQuote: Quote
   readonly otherQuotes: Quote[]
 }
 
-export const QuoteListPage: NextPage<QuoteListPageProps> = ({ quoteOfTheDay, otherQuotes }) => {
+export const QuoteListPage: NextPage<QuoteListPageProps> = ({ featuredQuote, otherQuotes }) => {
   return (
     <PageLayout title='Quotes'>
       <ContentBox>
-        <h2 className='subtitle is-2'>Quote of the Day</h2>
-        <QuoteDisplay quote={quoteOfTheDay} isFeatured />
+        <h2 className='subtitle is-2'>Featured Quote</h2>
+        <QuoteDisplay quote={featuredQuote} isFeatured />
         <h2 className='subtitle is-2'>Other Quotes</h2>
         {otherQuotes.map((quote) => (
           <QuoteDisplay key={quote.id} quote={quote} />
@@ -43,13 +43,13 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ quoteOfTheDay, oth
 
 export const getQuoteListPageStaticProps: GetStaticProps = async () => {
   const quotes = getQuotes()
-  const quoteOfTheDayIndex = randomInt.source(randomLcg(quotes.length))(0, quotes.length)()
+  const featuredQuoteIndex = randomInt.source(randomLcg(quotes.length))(0, quotes.length)()
   const otherQuotes = [...quotes]
-  otherQuotes.splice(quoteOfTheDayIndex, 1)
+  otherQuotes.splice(featuredQuoteIndex, 1)
 
   return {
     props: {
-      quoteOfTheDay: quotes[quoteOfTheDayIndex],
+      featuredQuote: quotes[featuredQuoteIndex],
       otherQuotes: otherQuotes.reverse(),
     },
   }
