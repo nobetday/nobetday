@@ -39,7 +39,7 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ featuredQuote, oth
   )
 }
 
-export const getQuoteListPageStaticProps: GetStaticProps = async (context) => {
+export const getQuoteListPageStaticProps: GetStaticProps = async () => {
   const quotes = getQuotes()
   return {
     props: {
