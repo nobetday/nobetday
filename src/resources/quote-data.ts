@@ -31,3 +31,7 @@ export const getOtherQuotes = (quotes: Quote[]): Quote[] => {
   const featuredQuote = getFeaturedQuote(quotes)
   return quotes.filter((quote) => quote.id !== featuredQuote.id).reverse()
 }
+
+export const getQuoteById = (id: string): Quote | undefined => {
+  return quotes.find((quote) => quote.id === id)
+}
