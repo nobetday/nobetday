@@ -4,11 +4,10 @@ import { useEffect, useState } from 'react'
 
 import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
+import { PageModal } from '@/common/page-modal'
 import { getQueryValue } from '@/common/query'
 import { getFeaturedQuote, getOtherQuotes, getQuoteById, getQuotes, Quote } from '@/resources/quote-data'
 import { QuoteDisplay } from '@/resources/quote-display'
-
-import { QuoteModal } from './quote-modal'
 
 export interface QuoteListPageProps {
   readonly featuredQuote: Quote
@@ -27,7 +26,11 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ featuredQuote, oth
   return (
     <PageLayout title='Quotes'>
       <ContentBox>
-        {selectedQuote && <QuoteModal quote={selectedQuote} />}
+        {selectedQuote && (
+          <PageModal>
+            <QuoteDisplay quote={selectedQuote} isFeatured={selectedQuote.id === featuredQuote.id} />
+          </PageModal>
+        )}
         <h2 className='subtitle is-2'>Featured Quote</h2>
         <QuoteDisplay quote={featuredQuote} isFeatured />
         <h2 className='subtitle is-2'>Other Quotes</h2>
@@ -41,6 +44,7 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ featuredQuote, oth
 
 export const getQuoteListPageStaticProps: GetStaticProps = async () => {
   const quotes = getQuotes()
+
   return {
     props: {
       featuredQuote: getFeaturedQuote(quotes),
