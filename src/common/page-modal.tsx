@@ -8,7 +8,7 @@ export const PageModal: FunctionComponent = ({ children }) => {
   return (
     <div className={clsx('modal', active && 'is-active')}>
       <div className='modal-background' onClick={handleClose}></div>
-      <div className='modal-content'>{children}</div>
+      <div className='modal-content has-background-body p-3'>{children}</div>
       <button className='modal-close is-large' onClick={handleClose} aria-label='close'></button>
     </div>
   )
