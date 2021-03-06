@@ -35,3 +35,7 @@ export const getOtherStories = (stories: Story[]): Story[] => {
   const featuredStory = getFeaturedStory(stories)
   return stories.filter((story) => story.id !== featuredStory.id).reverse()
 }
+
+export const getStoryById = (id: string): Story | undefined => {
+  return stories.find((story) => story.id === id)
+}
