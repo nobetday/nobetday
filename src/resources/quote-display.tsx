@@ -11,13 +11,14 @@ export interface QuoteDisplayProps {
 }
 
 export const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isFeatured = false }) => {
-  const handleCopyToClipboard = () =>
-    navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}?id=${quote.id}`)
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`${window.location.origin}/quotes?id=${quote.id}`)
+  }
   return (
     <article className={clsx('message', isFeatured ? 'is-info is-large' : 'is-dark is-medium')}>
       <div className='message-header'>
         <p>{quote.author}</p>
-        <a onClick={handleCopyToClipboard} className='icon is-small'>
+        <a onClick={handleCopy} className='icon is-small'>
           <FontAwesomeIcon icon={faCopy} />
         </a>
       </div>
