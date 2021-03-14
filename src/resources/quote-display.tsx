@@ -1,3 +1,5 @@
+import { faCopy } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
 
@@ -9,9 +11,17 @@ export interface QuoteDisplayProps {
 }
 
 export const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isFeatured = false }) => {
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`${window.location.origin}/quotes?id=${quote.id}`)
+  }
   return (
     <article className={clsx('message', isFeatured ? 'is-info is-large' : 'is-dark is-medium')}>
-      <div className='message-header'>{quote.author}</div>
+      <div className='message-header'>
+        <p>{quote.author}</p>
+        <a onClick={handleCopy} className='icon is-small'>
+          <FontAwesomeIcon icon={faCopy} />
+        </a>
+      </div>
       <div className='message-body is-size-4'>{quote.content}</div>
     </article>
   )
