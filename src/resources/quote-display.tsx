@@ -19,15 +19,17 @@ export const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote, isFe
       <div className='message-header'>
         <p>{quote.author}</p>
       </div>
-      <div className='message-body is-size-4'>{quote.content}</div>
-      <div className='level pl-4 pb-4'>
-        <div className='level-left'>
-          <div className='level-item'>
-            <button onClick={handleCopy} className='button'>
-              <span className='icon is-small'>
-                <FontAwesomeIcon icon={faCopy} />
-              </span>
-            </button>
+      <div className='message-body is-size-4'>
+        <p>{quote.content}</p>
+        <div className='level mt-4'>
+          <div className='level-left'>
+            <div className='level-item'>
+              <button onClick={handleCopy} className='button'>
+                <span className='icon is-small'>
+                  <FontAwesomeIcon icon={faCopy} />
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
