@@ -1,5 +1,3 @@
-import { getStoryListPageStaticProps, StoryListPage } from '@/resources/story-list-page'
-
-export { getStoryListPageStaticProps as getStaticProps }
+import { StoryListPage } from '@/resources/story-list-page'
 
 export default StoryListPage

@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -6,49 +6,35 @@ import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
 import { getQueryValue } from '@/common/query'
-import { getFeaturedQuote, getOtherQuotes, getQuoteById, getQuotes, Quote } from '@/resources/quote-data'
+import { getQuotesInOrder, Quote } from '@/resources/quote-data'
 import { QuoteDisplay } from '@/resources/quote-display'
 
-export interface QuoteListPageProps {
-  readonly featuredQuote: Quote
-  readonly otherQuotes: Quote[]
-}
+const quotes = getQuotesInOrder()
 
-export const QuoteListPage: NextPage<QuoteListPageProps> = ({ featuredQuote, otherQuotes }) => {
+export const QuoteListPage: NextPage = () => {
   const router = useRouter()
   const [selectedQuote, setSelectedQuote] = useState<Quote>()
+  const handleSelectedQuoteClose = () => {
+    router.push('/quotes')
+  }
+
   useEffect(() => {
-    const id = getQueryValue(router.query.id)
-    if (id) {
-      setSelectedQuote(getQuoteById(id))
-    }
-  }, [router])
+    const selectedQuoteId = getQueryValue(router.query.id)
+    setSelectedQuote(quotes.find((quote) => quote.id === selectedQuoteId))
+  }, [router.query.id])
+
   return (
     <PageLayout title='Quotes'>
-      <ContentBox>
+      <ContentBox className='is-max-desktop'>
         {selectedQuote && (
-          <PageModal>
-            <QuoteDisplay quote={selectedQuote} isFeatured={selectedQuote.id === featuredQuote.id} />
+          <PageModal onClose={handleSelectedQuoteClose}>
+            <QuoteDisplay quote={selectedQuote} />
           </PageModal>
         )}
-        <h2 className='subtitle is-2'>Featured Quote</h2>
-        <QuoteDisplay quote={featuredQuote} isFeatured />
-        <h2 className='subtitle is-2'>Other Quotes</h2>
-        {otherQuotes.map((quote) => (
+        {quotes.map((quote) => (
           <QuoteDisplay key={quote.id} quote={quote} />
         ))}
       </ContentBox>
     </PageLayout>
   )
-}
-
-export const getQuoteListPageStaticProps: GetStaticProps = async () => {
-  const quotes = getQuotes()
-
-  return {
-    props: {
-      featuredQuote: getFeaturedQuote(quotes),
-      otherQuotes: getOtherQuotes(quotes),
-    },
-  }
 }

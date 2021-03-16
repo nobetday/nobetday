@@ -1,9 +1,18 @@
 import clsx from 'clsx'
 import { FunctionComponent, useState } from 'react'
 
-export const PageModal: FunctionComponent = ({ children }) => {
+export interface PageModalProps {
+  readonly onClose?: () => void
+}
+
+export const PageModal: FunctionComponent<PageModalProps> = ({ children, onClose }) => {
   const [active, setActive] = useState(true)
-  const handleClose = () => setActive(false)
+  const handleClose = () => {
+    setActive(false)
+    if (onClose) {
+      onClose()
+    }
+  }
 
   return (
     <div className={clsx('modal', active && 'is-active')}>

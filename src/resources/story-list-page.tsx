@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -6,57 +6,37 @@ import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
 import { getQueryValue } from '@/common/query'
-import { getFeaturedStory, getOtherStories, getStories, getStoryById, Story } from '@/resources/story-data'
+import { getStoriesInOrder, Story } from '@/resources/story-data'
 import { StoryDisplay } from '@/resources/story-display'
 
-export interface StoryListPageProps {
-  readonly featuredStory: Story
-  readonly otherStories: Story[]
-}
+const stories = getStoriesInOrder()
 
-export const StoryListPage: NextPage<StoryListPageProps> = ({ featuredStory, otherStories }) => {
+export const StoryListPage: NextPage = () => {
   const router = useRouter()
   const [selectedStory, setSelectedStory] = useState<Story>()
+  const handleSelectedStoryClose = () => {
+    router.push('/stories')
+  }
+
   useEffect(() => {
-    const id = getQueryValue(router.query.id)
-    if (id) {
-      setSelectedStory(getStoryById(id))
-    }
-  }, [router])
+    const selectedStoryId = getQueryValue(router.query.id)
+    setSelectedStory(stories.find((story) => story.id === selectedStoryId))
+  }, [router.query.id])
+
   return (
     <PageLayout title='Stories'>
-      <ContentBox>
+      <ContentBox className='is-max-desktop'>
         {selectedStory && (
-          <PageModal>
-            <StoryDisplay story={selectedStory} isFeatured={selectedStory.id === featuredStory.id} />
+          <PageModal onClose={handleSelectedStoryClose}>
+            <StoryDisplay story={selectedStory} />
           </PageModal>
         )}
-        <h2 className='subtitle is-2'>Featured Story</h2>
-        <div className='columns is-centered'>
-          <div className='column is-two-thirds'>
-            <StoryDisplay story={featuredStory} isFeatured />
+        {stories.map((story) => (
+          <div key={story.id} className='block'>
+            <StoryDisplay story={story} />
           </div>
-        </div>
-        <h2 className='subtitle is-2'>Other Stories</h2>
-        <div className='columns is-multiline'>
-          {otherStories.map((story) => (
-            <div key={story.id} className='column is-half'>
-              <StoryDisplay story={story} />
-            </div>
-          ))}
-        </div>
+        ))}
       </ContentBox>
     </PageLayout>
   )
-}
-
-export const getStoryListPageStaticProps: GetStaticProps = async () => {
-  const stories = getStories()
-
-  return {
-    props: {
-      featuredStory: getFeaturedStory(stories),
-      otherStories: getOtherStories(stories),
-    },
-  }
 }
