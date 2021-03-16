@@ -5,8 +5,18 @@ const { customAlphabet } = require('nanoid')
 const quoteListPath = path.join(__dirname, '../src/resources/quotes.json')
 const getQuoteId = customAlphabet('1234567890', 10)
 
-const addQuote = () => {
+const checkQuotes = () => {
   const quotes = require(quoteListPath)
+  quotes.forEach((quote) => {
+    if (!quote.id || !quote.content || !quote.author) {
+      throw new Error('Invalid quote')
+    }
+  })
+  return quotes
+}
+
+const addQuote = () => {
+  const quotes = checkQuotes()
   const existingQuoteIds = quotes.map(({ id }) => id)
 
   let quoteId = getQuoteId()
@@ -24,6 +34,10 @@ const addQuote = () => {
 }
 
 const quoteCli = (argv) => {
+  if (argv[0] === 'check') {
+    checkQuotes()
+    return
+  }
   if (argv[0] === 'add') {
     addQuote()
     return

@@ -5,8 +5,18 @@ const { customAlphabet } = require('nanoid')
 const storyListPath = path.join(__dirname, '../src/resources/stories.json')
 const getStoryId = customAlphabet('1234567890', 10)
 
-const addStory = () => {
+const checkStories = () => {
   const stories = require(storyListPath)
+  stories.forEach((story) => {
+    if (!story.id || !story.url || !story.title || !story.summary || !story.imageUrl) {
+      throw new Error('Invalid story')
+    }
+  })
+  return stories
+}
+
+const addStory = () => {
+  const stories = checkStories()
   const existingStoryIds = stories.map(({ id }) => id)
 
   let storyId = getStoryId()
@@ -26,6 +36,10 @@ const addStory = () => {
 }
 
 const storyCli = (argv) => {
+  if (argv[0] === 'check') {
+    checkStories()
+    return
+  }
   if (argv[0] === 'add') {
     addStory()
     return
