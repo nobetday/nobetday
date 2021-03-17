@@ -25,7 +25,7 @@ export const PageModal: FunctionComponent<PageModalProps> = ({ children, onClose
   return (
     <div className={clsx('modal', active && 'is-active')}>
       <div className='modal-background' onClick={handleClose}></div>
-      <div className='modal-content has-background-body p-5'>{children}</div>
+      <div className='modal-content has-background-body'>{children}</div>
       <button className='modal-close is-large' onClick={handleClose} aria-label='close'></button>
     </div>
   )

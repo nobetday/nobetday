@@ -28,11 +28,15 @@ export const QuoteListPage: NextPage = () => {
       <ContentBox>
         {selectedQuote && (
           <PageModal onClose={handleSelectedQuoteClose}>
-            <QuoteDisplay quote={selectedQuote} />
+            <section className='section'>
+              <QuoteDisplay quote={selectedQuote} />
+            </section>
           </PageModal>
         )}
         {quotes.map((quote) => (
-          <QuoteDisplay key={quote.id} quote={quote} />
+          <section key={quote.id} className='section'>
+            <QuoteDisplay quote={quote} />
+          </section>
         ))}
       </ContentBox>
     </PageLayout>

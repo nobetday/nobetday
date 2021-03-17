@@ -11,26 +11,28 @@ export interface StoryDisplayProps {
 
 export const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story }) => {
   return (
-    <div className='block is-large'>
-      <figure className='image is-2by1 mb-5'>
-        <a href={story.url}>
-          <img src={story.imageUrl} alt={story.title} />
-        </a>
-      </figure>
-      <h2 className='subtitle is-2'>
-        <a href={story.url} className='has-text-dark'>
-          {story.title}
-        </a>
-      </h2>
-      <p className='is-size-4'>
-        <span>{story.summary}</span>
-        <a href={story.url} className='icon is-small ml-3'>
-          <FontAwesomeIcon icon={faExternalLinkAlt} />
-        </a>
-      </p>
-      <div className='mt-3'>
+    <>
+      <div className='block'>
+        <figure className='image is-2by1 mb-5'>
+          <a href={story.url}>
+            <img src={story.imageUrl} alt={story.title} />
+          </a>
+        </figure>
+        <h2 className='subtitle is-2'>
+          <a href={story.url} className='has-text-dark'>
+            {story.title}
+          </a>
+        </h2>
+        <p className='is-size-4'>
+          <span>{story.summary}</span>
+          <a href={story.url} className='icon is-small has-text-primary ml-3'>
+            <FontAwesomeIcon icon={faExternalLinkAlt} />
+          </a>
+        </p>
+      </div>
+      <div className='block'>
         <CopyLinkButton linkPath={`/stories?id=${story.id}`} />
       </div>
-    </div>
+    </>
   )
 }

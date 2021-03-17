@@ -10,10 +10,6 @@ $navbar-item-hover-background-color: $body-background-color;
 
 @import "~bulma/bulma.sass";
 
-main {
-  min-height: 70vh;
-}
-
 footer {
   padding: 10rem 0;
   border-top: 4px solid $danger;
@@ -38,10 +34,6 @@ footer {
 
 .has-background-body {
   background-color: $body-background-color;
-}
-
-.block:not(:last-child).is-large {
-  margin-bottom: 4rem;
 }
 
 .quote-content {

@@ -28,11 +28,15 @@ export const StoryListPage: NextPage = () => {
       <ContentBox>
         {selectedStory && (
           <PageModal onClose={handleSelectedStoryClose}>
-            <StoryDisplay story={selectedStory} />
+            <section className='section'>
+              <StoryDisplay story={selectedStory} />
+            </section>
           </PageModal>
         )}
         {stories.map((story) => (
-          <StoryDisplay key={story.id} story={story} />
+          <section key={story.id} className='section'>
+            <StoryDisplay story={story} />
+          </section>
         ))}
       </ContentBox>
     </PageLayout>

@@ -1,9 +1,17 @@
 import { NextPage } from 'next'
 
+import { ButtonLink } from '@/common/button-link'
 import { ContentBox } from '@/common/content-box'
 import { Navbar } from '@/common/navbar'
 import { PageFooter } from '@/common/page-footer'
 import { PageHead } from '@/common/page-head'
+import { getQuotesInOrder } from '@/resources/quote-data'
+import { QuoteDisplay } from '@/resources/quote-display'
+import { getStoriesInOrder } from '@/resources/story-data'
+import { StoryDisplay } from '@/resources/story-display'
+
+const latestStory = getStoriesInOrder()[0]
+const latestQuote = getQuotesInOrder()[0]
 
 export const HomePage: NextPage = () => {
   return (
@@ -18,9 +26,28 @@ export const HomePage: NextPage = () => {
             </ContentBox>
           </div>
         </section>
-        <section className='hero is-white is-large'>
-          <div className='hero-body'></div>
-        </section>
+        <ContentBox className='mt-6'>
+          <h2 className='title is-1 mb-2'>Stories</h2>
+          <section className='section'>
+            <StoryDisplay story={latestStory} />
+            <div className='block has-text-right'>
+              <ButtonLink href='/stories' className='is-primary'>
+                VIEW ALL STORIES
+              </ButtonLink>
+            </div>
+          </section>
+        </ContentBox>
+        <ContentBox className='mt-4'>
+          <h2 className='title is-1 mb-2'>Quotes</h2>
+          <section className='section'>
+            <QuoteDisplay quote={latestQuote} />
+            <div className='block has-text-right'>
+              <ButtonLink href='/quotes' className='is-primary'>
+                VIEW ALL QUOTES
+              </ButtonLink>
+            </div>
+          </section>
+        </ContentBox>
       </main>
       <PageFooter />
     </>

@@ -9,12 +9,14 @@ export interface QuoteDisplayProps {
 
 export const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote }) => {
   return (
-    <div className='block is-large'>
-      <h2 className='subtitle is-2 has-text-dark'>{quote.author}</h2>
-      <p className='quote-content is-size-4 pl-4 py-4'>{quote.content}</p>
-      <div className='mt-3'>
+    <>
+      <div className='block'>
+        <h2 className='subtitle is-2 has-text-dark'>{quote.author}</h2>
+        <p className='quote-content is-size-4 pl-4 py-4'>{quote.content}</p>
+      </div>
+      <div className='block'>
         <CopyLinkButton linkPath={`/quotes?id=${quote.id}`} />
       </div>
-    </div>
+    </>
   )
 }
