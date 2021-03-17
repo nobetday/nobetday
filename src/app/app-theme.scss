@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-$body-background-color: #EEE;
+$body-background-color: #F6F6F6;
 $primary: #3C735F;
 $link: $primary;
 $info: #4687C8;
@@ -33,8 +33,17 @@ footer {
 
 .card-image img {
   background-color: $light-invert;
+  object-fit: cover;
 }
 
 .has-background-body {
   background-color: $body-background-color;
+}
+
+.block:not(:last-child).is-large {
+  margin-bottom: 4rem;
+}
+
+.quote-content {
+  border-left: 3px solid $grey-light;
 }

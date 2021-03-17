@@ -14,24 +14,16 @@ export const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote }) =>
   }
 
   return (
-    <article className='message is-dark is-medium'>
-      <div className='message-header'>
-        <p>{quote.author}</p>
+    <div className='block is-large'>
+      <h2 className='subtitle is-2 has-text-dark'>{quote.author}</h2>
+      <p className='quote-content is-size-4 pl-4 py-4'>{quote.content}</p>
+      <div className='mt-3'>
+        <button onClick={handleCopy} className='button is-ghost has-text-grey'>
+          <span className='icon is-large'>
+            <FontAwesomeIcon icon={faCopy} size='2x' />
+          </span>
+        </button>
       </div>
-      <div className='message-body is-size-4'>
-        <p>{quote.content}</p>
-        <div className='level mt-4'>
-          <div className='level-left'>
-            <div className='level-item'>
-              <button onClick={handleCopy} className='button'>
-                <span className='icon is-small'>
-                  <FontAwesomeIcon icon={faCopy} />
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+    </div>
   )
 }
