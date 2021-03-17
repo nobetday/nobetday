@@ -6,5 +6,5 @@ export interface ContentBoxProps {
 }
 
 export const ContentBox: FunctionComponent<ContentBoxProps> = ({ className, children }) => {
-  return <div className={clsx('container px-3', className)}>{children}</div>
+  return <div className={clsx('container is-max-desktop px-3', className)}>{children}</div>
 }

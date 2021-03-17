@@ -25,16 +25,14 @@ export const StoryListPage: NextPage = () => {
 
   return (
     <PageLayout title='Stories'>
-      <ContentBox className='is-max-desktop'>
+      <ContentBox>
         {selectedStory && (
           <PageModal onClose={handleSelectedStoryClose}>
             <StoryDisplay story={selectedStory} />
           </PageModal>
         )}
         {stories.map((story) => (
-          <div key={story.id} className='block'>
-            <StoryDisplay story={story} />
-          </div>
+          <StoryDisplay key={story.id} story={story} />
         ))}
       </ContentBox>
     </PageLayout>

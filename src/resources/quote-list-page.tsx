@@ -25,7 +25,7 @@ export const QuoteListPage: NextPage = () => {
 
   return (
     <PageLayout title='Quotes'>
-      <ContentBox className='is-max-desktop'>
+      <ContentBox>
         {selectedQuote && (
           <PageModal onClose={handleSelectedQuoteClose}>
             <QuoteDisplay quote={selectedQuote} />

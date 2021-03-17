@@ -77,7 +77,7 @@ export const Navbar: FunctionComponent = () => {
 
   return (
     <nav className={clsx('navbar is-fixed-top', navbarColor)} role='navigation' aria-label='main navigation'>
-      <div className='container'>
+      <div className='container is-max-desktop'>
         <div className='navbar-brand'>
           <TextLink href='/' className='navbar-item mr-5'>
             <strong className='is-size-4'>{uiConstants.appName}</strong>
