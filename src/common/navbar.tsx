@@ -62,7 +62,7 @@ const NavbarStart: FunctionComponent = () => {
 
 const NavbarEnd: FunctionComponent = () => {
   return (
-    <div className='navbar-end mx-3'>
+    <div className='navbar-end'>
       <div className='navbar-item py-2'>
         <ButtonLink href='/signin' className='is-dark'>
           SIGN IN
