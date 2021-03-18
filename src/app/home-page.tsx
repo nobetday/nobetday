@@ -17,13 +17,13 @@ const latestQuote = getQuotesInOrder()[0]
 
 const IntroSection: FunctionComponent = () => {
   return (
-    <section className='hero is-info is-medium'>
-      <div className='hero-body'>
-        <ContentBox>
-          <h1 className='title'>Resources and Tools for Quitting Gambling</h1>
-        </ContentBox>
-      </div>
-    </section>
+    <div className='hero is-info'>
+      <ContentBox>
+        <section className='section is-medium'>
+          <h1 className='title is-1'>Resources and Tools for Quitting Gambling</h1>
+        </section>
+      </ContentBox>
+    </div>
   )
 }
 
