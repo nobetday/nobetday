@@ -12,7 +12,9 @@ export const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote }) =>
     <>
       <div className='block'>
         <h2 className='subtitle is-2 has-text-dark'>{quote.author}</h2>
-        <p className='quote-content is-size-4 pl-4 py-4'>{quote.content}</p>
+      </div>
+      <div className='block quote-content pl-4 py-4'>
+        <p className='is-size-4'>{quote.content}</p>
       </div>
       <div className='block'>
         <CopyLinkButton linkPath={`/quotes?id=${quote.id}`} />

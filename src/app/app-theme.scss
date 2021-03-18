@@ -7,16 +7,13 @@ $info: #4687C8;
 $danger: #E60000;
 $navbar-height: 3.8rem;
 $navbar-item-hover-background-color: $body-background-color;
+$section-padding: 2.5rem 1rem;
 
 @import "~bulma/bulma.sass";
 
 footer {
   padding: 10rem 0;
   border-top: 4px solid $danger;
-}
-
-.navbar-brand {
-  margin-left: 0 !important;
 }
 
 .navbar-brand .navbar-item {

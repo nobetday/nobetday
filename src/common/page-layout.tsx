@@ -14,9 +14,11 @@ export const PageLayout: FunctionComponent<PageLayoutProps> = ({ title, children
     <>
       <PageHead title={title} />
       <Navbar />
-      <header className='pt-6 pb-2'>
+      <header className='mt-6'>
         <ContentBox>
-          <h1 className='title is-1'>{title}</h1>
+          <section className='section'>
+            <h1 className='title is-1'>{title}</h1>
+          </section>
         </ContentBox>
       </header>
       <main>{children}</main>
