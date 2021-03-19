@@ -6,7 +6,7 @@ import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
 import { getQueryValue } from '@/common/query'
-import { getStoriesInOrder, Story } from '@/resources/story-data'
+import { getStoriesInOrder, Story, storyDescription } from '@/resources/story-data'
 import { StoryDisplay } from '@/resources/story-display'
 
 const stories = getStoriesInOrder()
@@ -14,6 +14,7 @@ const stories = getStoriesInOrder()
 export const StoryListPage: NextPage = () => {
   const router = useRouter()
   const [selectedStory, setSelectedStory] = useState<Story>()
+
   const handleSelectedStoryClose = () => {
     router.push('/stories')
   }
@@ -24,7 +25,7 @@ export const StoryListPage: NextPage = () => {
   }, [router.query.id])
 
   return (
-    <PageLayout title='Stories'>
+    <PageLayout title='Stories' subtitle={storyDescription}>
       <ContentBox>
         {selectedStory && (
           <PageModal onClose={handleSelectedStoryClose}>

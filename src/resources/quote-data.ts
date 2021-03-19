@@ -6,6 +6,8 @@ export interface Quote {
   readonly author: string
 }
 
+export const quoteDescription = 'Great quotes that will make you think twice about wagering.'
+
 export const getQuotesInOrder = (): Quote[] => {
   return [...quotes].reverse()
 }

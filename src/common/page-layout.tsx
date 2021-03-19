@@ -7,17 +7,19 @@ import { PageHead } from '@/common/page-head'
 
 export interface PageLayoutProps {
   readonly title: string
+  readonly subtitle?: string
 }
 
-export const PageLayout: FunctionComponent<PageLayoutProps> = ({ title, children }) => {
+export const PageLayout: FunctionComponent<PageLayoutProps> = ({ title, subtitle, children }) => {
   return (
     <>
       <PageHead title={title} />
       <Navbar />
-      <header className='mt-6'>
+      <header className='mt-5'>
         <ContentBox>
           <section className='section'>
             <h1 className='title is-1'>{title}</h1>
+            {subtitle && <p className='subtitle is-3'>{subtitle}</p>}
           </section>
         </ContentBox>
       </header>

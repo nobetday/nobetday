@@ -6,7 +6,7 @@ import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
 import { getQueryValue } from '@/common/query'
-import { getQuotesInOrder, Quote } from '@/resources/quote-data'
+import { getQuotesInOrder, Quote, quoteDescription } from '@/resources/quote-data'
 import { QuoteDisplay } from '@/resources/quote-display'
 
 const quotes = getQuotesInOrder()
@@ -14,6 +14,7 @@ const quotes = getQuotesInOrder()
 export const QuoteListPage: NextPage = () => {
   const router = useRouter()
   const [selectedQuote, setSelectedQuote] = useState<Quote>()
+
   const handleSelectedQuoteClose = () => {
     router.push('/quotes')
   }
@@ -24,7 +25,7 @@ export const QuoteListPage: NextPage = () => {
   }, [router.query.id])
 
   return (
-    <PageLayout title='Quotes'>
+    <PageLayout title='Quotes' subtitle={quoteDescription}>
       <ContentBox>
         {selectedQuote && (
           <PageModal onClose={handleSelectedQuoteClose}>
