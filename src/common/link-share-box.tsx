@@ -53,9 +53,7 @@ const LinkShareTwitterButton: FunctionComponent<LinkShareProps> = ({ summary, li
 
 const LinkShareFacebookButton: FunctionComponent<LinkShareProps> = ({ summary, linkPath }) => {
   const handleClick = () => {
-    const urlParam = `u=${encodeURIComponent(getFullUrl(linkPath))}`
-    const titleParam = `title=${encodeURIComponent(ellipsize(summary, 200))}`
-    window.open(`https://www.facebook.com/sharer/sharer.php?${urlParam}&${titleParam}`)
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getFullUrl(linkPath))}`)
   }
 
   return (
