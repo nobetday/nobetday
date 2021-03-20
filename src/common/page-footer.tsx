@@ -1,4 +1,4 @@
-import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faGithubSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
 import { faChartLine } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
@@ -20,12 +20,12 @@ export const PageFooter: FunctionComponent<PageFooterProps> = ({ className }) =>
         <div className='field is-grouped is-grouped-centered'>
           <div className='control'>
             <a href='https://github.com/nobetday/nobetday' className='icon is-large'>
-              <FontAwesomeIcon icon={faGithub} size='2x' />
+              <FontAwesomeIcon icon={faGithubSquare} size='2x' />
             </a>
           </div>
           <div className='control'>
             <a href='https://twitter.com/nobetday' className='icon is-large'>
-              <FontAwesomeIcon icon={faTwitter} size='2x' />
+              <FontAwesomeIcon icon={faTwitterSquare} size='2x' />
             </a>
           </div>
           <div className='control'>
