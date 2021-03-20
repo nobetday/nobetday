@@ -8,7 +8,7 @@ export interface Story {
   readonly imageUrl: string
 }
 
-export const storyDescription = 'Real life stories about gambling problem and recovery.'
+export const storyDescription = 'Real life stories from people who experience gambling harm.'
 
 export const getStoriesInOrder = (): Story[] => {
   return [...stories].reverse()
