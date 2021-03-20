@@ -2,7 +2,7 @@ import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ellipsize from 'ellipsize'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, MouseEvent } from 'react'
 
 const getFullUrl = (linkPath: string): string => `${window.location.origin}${linkPath}`
 
@@ -12,7 +12,11 @@ export interface LinkShareProps {
 }
 
 const LinkShareCopyButton: FunctionComponent<LinkShareProps> = ({ linkPath }) => {
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent) => {
+    if (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey) {
+      return
+    }
+
     navigator.clipboard.writeText(getFullUrl(linkPath))
 
     const { toast } = require('bulma-toast')
@@ -22,14 +26,16 @@ const LinkShareCopyButton: FunctionComponent<LinkShareProps> = ({ linkPath }) =>
       position: 'bottom-left',
       duration: 1000,
     })
+
+    event.preventDefault()
   }
 
   return (
-    <button onClick={handleClick} title='Copy Link' className='button is-ghost has-text-grey'>
+    <a href={linkPath} onClick={handleClick} title='Copy Link' className='button is-ghost has-text-grey'>
       <span className='icon is-medium'>
         <FontAwesomeIcon icon={faLink} size='lg' />
       </span>
-    </button>
+    </a>
   )
 }
 
