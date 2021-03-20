@@ -2,9 +2,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FunctionComponent } from 'react'
 
-import { CopyLinkButton } from '@/common/copy-link-button'
-import { FacebookLinkButton } from '@/common/facebook-link-button'
-import { TwitterLinkButton } from '@/common/twitter-link-button'
+import { LinkShareBox } from '@/common/link-share-box'
 import { Story } from '@/resources/story-data'
 
 export interface StoryDisplayProps {
@@ -36,11 +34,7 @@ export const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story }) =>
           </a>
         </p>
       </div>
-      <div className='block'>
-        <CopyLinkButton linkPath={`/stories?id=${story.id}`} />
-        <TwitterLinkButton linkPath={`/stories?id=${story.id}`} />
-        <FacebookLinkButton linkPath={`/stories?id=${story.id}`} />
-      </div>
+      <LinkShareBox summary={`${story.title}: ${story.summary}`} linkPath={`/stories?id=${story.id}`} />
     </>
   )
 }

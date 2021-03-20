@@ -1,8 +1,6 @@
 import { FunctionComponent } from 'react'
 
-import { CopyLinkButton } from '@/common/copy-link-button'
-import { FacebookLinkButton } from '@/common/facebook-link-button'
-import { TwitterLinkButton } from '@/common/twitter-link-button'
+import { LinkShareBox } from '@/common/link-share-box'
 import { Quote } from '@/resources/quote-data'
 
 export interface QuoteDisplayProps {
@@ -18,11 +16,7 @@ export const QuoteDisplay: FunctionComponent<QuoteDisplayProps> = ({ quote }) =>
       <div className='block quote-content pl-4 py-4'>
         <p className='is-size-4'>{quote.content}</p>
       </div>
-      <div className='block'>
-        <CopyLinkButton linkPath={`/quotes?id=${quote.id}`} />
-        <TwitterLinkButton linkPath={`/quotes?id=${quote.id}`} />
-        <FacebookLinkButton linkPath={`/quotes?id=${quote.id}`} />
-      </div>
+      <LinkShareBox summary={`${quote.author}: "${quote.content}"`} linkPath={`/quotes?id=${quote.id}`} />
     </>
   )
 }
