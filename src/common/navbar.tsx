@@ -1,3 +1,5 @@
+import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { FunctionComponent, useState } from 'react'
@@ -5,6 +7,7 @@ import { FunctionComponent, useState } from 'react'
 import { ButtonLink } from '@/common/button-link'
 import { TextLink, TextLinkProps } from '@/common/text-link'
 import { uiConstants } from '@/common/ui-constants'
+import { useAuthActions, useAuthState } from '@/user/auth-context'
 
 const navbarColor = 'is-primary'
 
@@ -61,12 +64,27 @@ const NavbarStart: FunctionComponent = () => {
 }
 
 const NavbarEnd: FunctionComponent = () => {
+  const { isReady, user } = useAuthState()
+  const { signIn } = useAuthActions()
+
   return (
     <div className='navbar-end'>
       <div className='navbar-item py-2'>
-        <ButtonLink href='/signin' className='is-dark'>
-          SIGN IN
-        </ButtonLink>
+        {isReady && (
+          <>
+            {user ? (
+              <ButtonLink href='/signin' className='is-dark'>
+                <span className='icon is-large'>
+                  <FontAwesomeIcon icon={faUser} size='lg' />
+                </span>
+              </ButtonLink>
+            ) : (
+              <button onClick={signIn} className='button is-dark'>
+                SIGN IN
+              </button>
+            )}
+          </>
+        )}
       </div>
     </div>
   )

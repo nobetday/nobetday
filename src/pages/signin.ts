@@ -1,3 +1,3 @@
-import { SignInPage } from '@/app/signin-page'
+import { SignInPage } from '@/user/signin-page'
 
 export default SignInPage

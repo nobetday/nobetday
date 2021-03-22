@@ -11,17 +11,17 @@ const SocialLinks: FunctionComponent = () => {
     <div className='block'>
       <div className='field is-grouped is-grouped-centered'>
         <div className='control'>
-          <a href='https://github.com/nobetday/nobetday' title='GitHub' className='icon is-large'>
+          <a href='https://github.com/nobetday/nobetday' title='GitHub' className='icon is-large has-text-primary'>
             <FontAwesomeIcon icon={faGithubSquare} size='2x' />
           </a>
         </div>
         <div className='control'>
-          <a href='https://twitter.com/nobetday' title='Twitter' className='icon is-large'>
+          <a href='https://twitter.com/nobetday' title='Twitter' className='icon is-large has-text-primary'>
             <FontAwesomeIcon icon={faTwitterSquare} size='2x' />
           </a>
         </div>
         <div className='control'>
-          <a href='https://plausible.io/nobetday.com' title='Analytics' className='icon is-large'>
+          <a href='https://plausible.io/nobetday.com' title='Analytics' className='icon is-large has-text-primary'>
             <FontAwesomeIcon icon={faGlobe} size='2x' />
           </a>
         </div>
