@@ -1,6 +1,6 @@
 import { config as fontawesomeConfig, dom as fontawesomeDom } from '@fortawesome/fontawesome-svg-core'
 import NextHead from 'next/head'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, memo } from 'react'
 
 import { uiConstants } from '@/common/ui-constants'
 
@@ -13,7 +13,7 @@ export interface PageHeadProps {
   readonly title: string
 }
 
-export const PageHead: FunctionComponent<PageHeadProps> = ({ title }) => {
+export const PageHead: FunctionComponent<PageHeadProps> = memo(({ title }) => {
   return (
     <NextHead>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -26,4 +26,4 @@ export const PageHead: FunctionComponent<PageHeadProps> = ({ title }) => {
       </title>
     </NextHead>
   )
-}
+})
