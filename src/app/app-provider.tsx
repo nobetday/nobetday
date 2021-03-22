@@ -1,3 +1,5 @@
+import '@/common/firebase'
+
 import { AppProps } from 'next/app'
 
 import { AuthContextProvider } from '@/user/auth-context'
