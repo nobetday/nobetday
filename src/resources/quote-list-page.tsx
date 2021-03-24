@@ -10,10 +10,20 @@ import { getQuotesInOrder, Quote, quoteDescription } from '@/resources/quote-dat
 import { QuoteDisplay } from '@/resources/quote-display'
 
 const quotes = getQuotesInOrder()
+const itemsPerPage = 10
 
-export const QuoteListPage: NextPage = () => {
+export const getTotalPages = (): number => {
+  return Math.ceil(quotes.length / itemsPerPage)
+}
+
+export interface QuoteListPageProps {
+  readonly page: number
+}
+
+export const QuoteListPage: NextPage<QuoteListPageProps> = ({ page }) => {
   const router = useRouter()
   const [selectedQuote, setSelectedQuote] = useState<Quote>()
+  const pagedQuotes = quotes.slice((page - 1) * itemsPerPage, page * itemsPerPage)
 
   const handleSelectedQuoteClose = () => {
     router.push('/quotes')
@@ -34,11 +44,19 @@ export const QuoteListPage: NextPage = () => {
             </section>
           </PageModal>
         )}
-        {quotes.map((quote) => (
+        {pagedQuotes.map((quote) => (
           <section key={quote.id} className='section'>
             <QuoteDisplay quote={quote} />
           </section>
         ))}
+        <nav className='pagination'>
+          <a href={`/quotes/pages/${page - 1}`} className='pagination-previous' disabled={page === 1}>
+            Previous
+          </a>
+          <a href={`/quotes/pages/${page + 1}`} className='pagination-next' disabled={page === getTotalPages()}>
+            Next page
+          </a>
+        </nav>
       </ContentBox>
     </PageLayout>
   )
