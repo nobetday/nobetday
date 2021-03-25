@@ -41,6 +41,7 @@
     "eslint-plugin-no-null": "1.0.2",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "next-compose-plugins": "2.2.1",
+    "querystring": "0.2.1",
     "sass": "1.32.8",
     "tsdx": "0.14.1"
   }
