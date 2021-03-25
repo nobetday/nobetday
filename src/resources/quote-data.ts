@@ -1,3 +1,4 @@
+import { uiConstants } from '@/common/ui-constants'
 import quotes from '@/resources/quotes.json'
 
 export interface Quote {
@@ -10,4 +11,8 @@ export const quoteDescription = 'Great quotes that will make you think twice abo
 
 export const getQuotesInOrder = (): Quote[] => {
   return [...quotes].reverse()
+}
+
+export const getTotalQuotePages = () => {
+  return Math.ceil(quotes.length / uiConstants.itemsPerPage)
 }

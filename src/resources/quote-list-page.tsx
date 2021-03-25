@@ -5,25 +5,23 @@ import { useEffect, useState } from 'react'
 import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
+import { Pagination } from '@/common/pagination'
 import { getQueryValue } from '@/common/query'
-import { getQuotesInOrder, Quote, quoteDescription } from '@/resources/quote-data'
+import { uiConstants } from '@/common/ui-constants'
+import { getQuotesInOrder, getTotalQuotePages, Quote, quoteDescription } from '@/resources/quote-data'
 import { QuoteDisplay } from '@/resources/quote-display'
 
 const quotes = getQuotesInOrder()
-const itemsPerPage = 10
-
-export const getTotalPages = (): number => {
-  return Math.ceil(quotes.length / itemsPerPage)
-}
+const totalQuotePages = getTotalQuotePages()
 
 export interface QuoteListPageProps {
-  readonly page: number
+  readonly pageId: number
 }
 
-export const QuoteListPage: NextPage<QuoteListPageProps> = ({ page }) => {
+export const QuoteListPage: NextPage<QuoteListPageProps> = ({ pageId }) => {
   const router = useRouter()
   const [selectedQuote, setSelectedQuote] = useState<Quote>()
-  const pagedQuotes = quotes.slice((page - 1) * itemsPerPage, page * itemsPerPage)
+  const quotesOfPage = quotes.slice((pageId - 1) * uiConstants.itemsPerPage, pageId * uiConstants.itemsPerPage)
 
   const handleSelectedQuoteClose = () => {
     router.push('/quotes')
@@ -44,19 +42,15 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ page }) => {
             </section>
           </PageModal>
         )}
-        {pagedQuotes.map((quote) => (
+        {quotesOfPage.map((quote) => (
           <section key={quote.id} className='section'>
             <QuoteDisplay quote={quote} />
           </section>
         ))}
-        <nav className='pagination'>
-          <a href={`/quotes/pages/${page - 1}`} className='pagination-previous' disabled={page === 1}>
-            Previous
-          </a>
-          <a href={`/quotes/pages/${page + 1}`} className='pagination-next' disabled={page === getTotalPages()}>
-            Next page
-          </a>
-        </nav>
+        <Pagination
+          previousPath={pageId > 1 ? (pageId === 2 ? '/quotes' : `/quotes/p/${pageId - 1}`) : undefined}
+          nextPath={pageId < totalQuotePages ? `/quotes/p/${pageId + 1}` : undefined}
+        />
       </ContentBox>
     </PageLayout>
   )

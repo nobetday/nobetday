@@ -2,10 +2,10 @@ import { GetStaticProps } from 'next'
 
 import { QuoteListPage, QuoteListPageProps } from '@/resources/quote-list-page'
 
+export default QuoteListPage
+
 export const getStaticProps: GetStaticProps<QuoteListPageProps> = async () => {
   return {
-    props: { page: 1 },
+    props: { pageId: 1 },
   }
 }
-
-export default QuoteListPage
