@@ -1,4 +1,3 @@
-import { uiConstants } from '@/common/ui-constants'
 import stories from '@/story/stories.json'
 import { Story } from '@/story/story-model'
 
@@ -8,6 +7,8 @@ export const getStoriesInOrder = (): Story[] => {
   return [...stories].reverse()
 }
 
+export const storiesPerPage = 5
+
 export const getTotalStoryPages = () => {
-  return Math.ceil(stories.length / uiConstants.itemsPerPage)
+  return Math.ceil(stories.length / storiesPerPage)
 }

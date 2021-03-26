@@ -7,8 +7,7 @@ import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
 import { Pagination } from '@/common/pagination'
 import { getQueryValue } from '@/common/query'
-import { uiConstants } from '@/common/ui-constants'
-import { getStoriesInOrder, getTotalStoryPages, storyDescription } from '@/story/story-data'
+import { getStoriesInOrder, getTotalStoryPages, storiesPerPage, storyDescription } from '@/story/story-data'
 import { StoryDisplay } from '@/story/story-display'
 import { Story } from '@/story/story-model'
 
@@ -22,7 +21,7 @@ export interface StoryListPageProps {
 export const StoryListPage: NextPage<StoryListPageProps> = ({ pageId }) => {
   const router = useRouter()
   const [selectedStory, setSelectedStory] = useState<Story>()
-  const storiesOfPage = stories.slice((pageId - 1) * uiConstants.itemsPerPage, pageId * uiConstants.itemsPerPage)
+  const storiesOfPage = stories.slice((pageId - 1) * storiesPerPage, pageId * storiesPerPage)
 
   const handleSelectedStoryClose = () => {
     router.push('/stories')
