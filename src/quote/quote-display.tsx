@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 
 import { LinkShareBox } from '@/common/link-share-box'
-import { Quote } from '@/resources/quote-data'
+import { Quote } from '@/quote/quote-model'
 
 export interface QuoteDisplayProps {
   readonly quote: Quote

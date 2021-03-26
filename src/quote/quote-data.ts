@@ -1,11 +1,6 @@
 import { uiConstants } from '@/common/ui-constants'
-import quotes from '@/resources/quotes.json'
-
-export interface Quote {
-  readonly id: string
-  readonly content: string
-  readonly author: string
-}
+import { Quote } from '@/quote/quote-model'
+import quotes from '@/quote/quotes.json'
 
 export const quoteDescription = 'Great quotes that will make you think twice about wagering.'
 

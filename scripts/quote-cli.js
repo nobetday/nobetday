@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const { customAlphabet } = require('nanoid')
 
-const quoteListPath = path.join(__dirname, '../src/resources/quotes.json')
+const quoteListPath = path.join(__dirname, '../src/quote/quotes.json')
 const getQuoteId = customAlphabet('1234567890', 10)
 
 const checkQuotes = () => {

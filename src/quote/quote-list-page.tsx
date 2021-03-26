@@ -8,8 +8,9 @@ import { PageModal } from '@/common/page-modal'
 import { Pagination } from '@/common/pagination'
 import { getQueryValue } from '@/common/query'
 import { uiConstants } from '@/common/ui-constants'
-import { getQuotesInOrder, getTotalQuotePages, Quote, quoteDescription } from '@/resources/quote-data'
-import { QuoteDisplay } from '@/resources/quote-display'
+import { getQuotesInOrder, getTotalQuotePages, quoteDescription } from '@/quote/quote-data'
+import { QuoteDisplay } from '@/quote/quote-display'
+import { Quote } from '@/quote/quote-model'
 
 const quotes = getQuotesInOrder()
 const totalQuotePages = getTotalQuotePages()

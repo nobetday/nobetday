@@ -1,11 +1,6 @@
-import { GetStaticProps } from 'next'
+import { QuoteListPage } from '@/quote/quote-list-page'
+import { getFirstQuoteListPageStaticProps } from '@/quote/quote-list-page-data'
 
-import { QuoteListPage, QuoteListPageProps } from '@/resources/quote-list-page'
+export { getFirstQuoteListPageStaticProps as getStaticProps }
 
 export default QuoteListPage
-
-export const getStaticProps: GetStaticProps<QuoteListPageProps> = async () => {
-  return {
-    props: { pageId: 1 },
-  }
-}
