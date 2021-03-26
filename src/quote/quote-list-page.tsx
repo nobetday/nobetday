@@ -7,8 +7,7 @@ import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
 import { Pagination } from '@/common/pagination'
 import { getQueryValue } from '@/common/query'
-import { uiConstants } from '@/common/ui-constants'
-import { getQuotesInOrder, getTotalQuotePages, quoteDescription } from '@/quote/quote-data'
+import { getQuotesInOrder, getTotalQuotePages, quoteDescription, quotesPerPage } from '@/quote/quote-data'
 import { QuoteDisplay } from '@/quote/quote-display'
 import { Quote } from '@/quote/quote-model'
 
@@ -22,7 +21,7 @@ export interface QuoteListPageProps {
 export const QuoteListPage: NextPage<QuoteListPageProps> = ({ pageId }) => {
   const router = useRouter()
   const [selectedQuote, setSelectedQuote] = useState<Quote>()
-  const quotesOfPage = quotes.slice((pageId - 1) * uiConstants.itemsPerPage, pageId * uiConstants.itemsPerPage)
+  const quotesOfPage = quotes.slice((pageId - 1) * quotesPerPage, pageId * quotesPerPage)
 
   const handleSelectedQuoteClose = () => {
     router.push('/quotes')
