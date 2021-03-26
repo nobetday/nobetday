@@ -1,3 +1,3 @@
-import { StoryListPage } from '@/resources/story-list-page'
+import { StoryListPage } from '@/story/story-list-page'
 
 export default StoryListPage

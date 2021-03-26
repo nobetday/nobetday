@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FunctionComponent } from 'react'
 
 import { LinkShareBox } from '@/common/link-share-box'
-import { Story } from '@/resources/story-data'
+import { Story } from '@/story/story-model'
 
 export interface StoryDisplayProps {
   readonly story: Story

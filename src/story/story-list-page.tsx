@@ -6,8 +6,9 @@ import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
 import { getQueryValue } from '@/common/query'
-import { getStoriesInOrder, Story, storyDescription } from '@/resources/story-data'
-import { StoryDisplay } from '@/resources/story-display'
+import { getStoriesInOrder, storyDescription } from '@/story/story-data'
+import { StoryDisplay } from '@/story/story-display'
+import { Story } from '@/story/story-model'
 
 const stories = getStoriesInOrder()
 
