@@ -21,7 +21,7 @@ const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
 
   return (
     <div className='block'>
-      <p className='subtitle is-size-2'>{getNameFromId(user.id)}</p>
+      <p className='subtitle is-2'>{getNameFromId(user.id)}</p>
       <button onClick={signOut} className='button'>
         SIGN OUT
       </button>
@@ -61,7 +61,7 @@ export const SignInPage: NextPage = () => {
       <main>
         <ContentBox className='has-text-centered'>
           <div className='block'>
-            <TextLink href='/' className='is-size-1 has-text-primary'>
+            <TextLink href='/' className='title is-1 has-text-primary'>
               {uiConstants.appName}
             </TextLink>
           </div>

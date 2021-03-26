@@ -7,10 +7,10 @@ import { Navbar } from '@/common/navbar'
 import { PageFooter } from '@/common/page-footer'
 import { PageHead } from '@/common/page-head'
 import { TextLink } from '@/common/text-link'
-import { getQuotesInOrder, quoteDescription } from '@/resources/quote-data'
-import { QuoteDisplay } from '@/resources/quote-display'
-import { getStoriesInOrder, storyDescription } from '@/resources/story-data'
-import { StoryDisplay } from '@/resources/story-display'
+import { getQuotesInOrder, quoteDescription } from '@/quote/quote-data'
+import { QuoteDisplay } from '@/quote/quote-display'
+import { getStoriesInOrder, storyDescription } from '@/story/story-data'
+import { StoryDisplay } from '@/story/story-display'
 
 const latestStory = getStoriesInOrder()[0]
 const latestQuote = getQuotesInOrder()[0]
