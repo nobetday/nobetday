@@ -5,16 +5,24 @@ import { useEffect, useState } from 'react'
 import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
+import { Pagination } from '@/common/pagination'
 import { getQueryValue } from '@/common/query'
-import { getStoriesInOrder, storyDescription } from '@/story/story-data'
+import { uiConstants } from '@/common/ui-constants'
+import { getStoriesInOrder, getTotalStoryPages, storyDescription } from '@/story/story-data'
 import { StoryDisplay } from '@/story/story-display'
 import { Story } from '@/story/story-model'
 
 const stories = getStoriesInOrder()
+const totalStoryPages = getTotalStoryPages()
 
-export const StoryListPage: NextPage = () => {
+export interface StoryListPageProps {
+  readonly pageId: number
+}
+
+export const StoryListPage: NextPage<StoryListPageProps> = ({ pageId }) => {
   const router = useRouter()
   const [selectedStory, setSelectedStory] = useState<Story>()
+  const storiesOfPage = stories.slice((pageId - 1) * uiConstants.itemsPerPage, pageId * uiConstants.itemsPerPage)
 
   const handleSelectedStoryClose = () => {
     router.push('/stories')
@@ -35,11 +43,15 @@ export const StoryListPage: NextPage = () => {
             </section>
           </PageModal>
         )}
-        {stories.map((story) => (
+        {storiesOfPage.map((story) => (
           <section key={story.id} className='section'>
             <StoryDisplay story={story} />
           </section>
         ))}
+        <Pagination
+          previousPath={pageId > 1 ? (pageId === 2 ? '/stories' : `/stories/p/${pageId - 1}`) : undefined}
+          nextPath={pageId < totalStoryPages ? `/stories/p/${pageId + 1}` : undefined}
+        />
       </ContentBox>
     </PageLayout>
   )
