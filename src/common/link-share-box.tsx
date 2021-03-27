@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ellipsize from 'ellipsize'
 import { FunctionComponent, MouseEvent } from 'react'
 
+import { alertToast } from '@/common/alert-toast'
+
 const getFullUrl = (linkPath: string): string => `${window.location.origin}${linkPath}`
 
 export interface LinkShareProps {
@@ -19,13 +21,7 @@ const LinkShareCopyButton: FunctionComponent<LinkShareProps> = ({ linkPath }) =>
 
     navigator.clipboard.writeText(getFullUrl(linkPath))
 
-    const { toast } = require('bulma-toast')
-    toast({
-      message: 'Link copied',
-      type: 'is-info',
-      position: 'bottom-left',
-      duration: 1000,
-    })
+    alertToast({ content: 'Link copied', type: 'is-info' })
 
     event.preventDefault()
   }
