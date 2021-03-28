@@ -17,20 +17,16 @@ export interface AuthActions {
   readonly signOut: () => Promise<void>
 }
 
-const useFirebaseAuthEffect = (authActions: AuthActions) => {
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(async (firebaseUser) => {
-      if (!firebaseUser) {
-        authActions.setUser()
-        return
-      }
+const listenToAuthStateChange = (authActions: AuthActions) => {
+  firebase.auth().onAuthStateChanged(async (firebaseUser) => {
+    if (!firebaseUser) {
+      authActions.setUser()
+      return
+    }
 
-      const { uid } = firebaseUser
-      authActions.setUser({ id: uid })
-    })
-    // Register auth state change handler only once
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    const { uid, email } = firebaseUser
+    authActions.setUser({ id: uid, hiddenInfo: { email: email || undefined } })
+  })
 }
 
 const useAuthContext = () => {
@@ -52,7 +48,11 @@ const useAuthContext = () => {
     [router, authState],
   )
 
-  useFirebaseAuthEffect(authActions)
+  useEffect(() => {
+    listenToAuthStateChange(authActions)
+    // Register auth state change handler only once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return { authState, authActions }
 }

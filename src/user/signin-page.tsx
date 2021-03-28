@@ -1,6 +1,7 @@
-import firebase from 'firebase/app'
+import { faSort } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
 import { FunctionComponent, useEffect } from 'react'
 
 import { ContentBox } from '@/common/content-box'
@@ -11,6 +12,8 @@ import { uiConstants } from '@/common/ui-constants'
 import { redirectUrlParam, useAuthActions, useAuthState } from '@/user/auth-context'
 import { AuthReady } from '@/user/auth-ready'
 import { AuthUser, getNameFromId } from '@/user/auth-user'
+import { SignInWithEmailBlock } from '@/user/sign-in-with-email'
+import { SignInWithGoogleButton } from '@/user/sign-in-with-google'
 
 interface UserSummaryProps {
   readonly user: AuthUser
@@ -21,27 +24,42 @@ const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
 
   return (
     <div className='block'>
-      <p className='subtitle is-2'>{getNameFromId(user.id)}</p>
-      <button onClick={signOut} className='button'>
+      <p className='subtitle is-4'>
+        <TextLink href='/account'>{getNameFromId(user.id)}</TextLink>
+      </p>
+      <button onClick={signOut} className='button is-dark'>
         SIGN OUT
       </button>
     </div>
   )
 }
 
-const SignInWithGoogleButton: FunctionComponent = () => {
-  const handleClick = () => {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    firebase.auth().signInWithRedirect(provider)
-  }
-
+const SignInBox: FunctionComponent = () => {
   return (
-    <div className='block'>
-      <button onClick={handleClick} className='button is-medium'>
-        Sign in with Google
-      </button>
+    <div style={{ width: 400, margin: '0 auto' }}>
+      <SignInWithEmailBlock />
+      <div className='block'>
+        <span className='icon is-medium has-text-grey-light'>
+          <FontAwesomeIcon icon={faSort} size='lg' />
+        </span>
+      </div>
+      <SignInWithGoogleButton />
     </div>
   )
+}
+
+const checkRedirect = (router: NextRouter) => {
+  const redirectUrl = getQueryValue(router.query[redirectUrlParam])
+  if (redirectUrl) {
+    router.replace(redirectUrl)
+    return
+  }
+
+  const mode = getQueryValue(router.query.mode)
+  if (mode === 'signIn') {
+    router.replace('/')
+    return
+  }
 }
 
 export const SignInPage: NextPage = () => {
@@ -49,9 +67,8 @@ export const SignInPage: NextPage = () => {
   const { user } = useAuthState()
 
   useEffect(() => {
-    const redirectUrl = getQueryValue(router.query[redirectUrlParam])
-    if (user && redirectUrl) {
-      router.replace(redirectUrl)
+    if (user) {
+      checkRedirect(router)
     }
   }, [router, user])
 
@@ -60,20 +77,12 @@ export const SignInPage: NextPage = () => {
       <PageHead title='Sign In' />
       <main>
         <ContentBox className='has-text-centered'>
-          <div className='block'>
+          <div className='mb-6'>
             <TextLink href='/' className='title is-1 has-text-primary'>
               {uiConstants.appName}
             </TextLink>
           </div>
-          <AuthReady>
-            {user ? (
-              <UserSummary user={user} />
-            ) : (
-              <>
-                <SignInWithGoogleButton />
-              </>
-            )}
-          </AuthReady>
+          <AuthReady>{user ? <UserSummary user={user} /> : <SignInBox />}</AuthReady>
         </ContentBox>
       </main>
     </>

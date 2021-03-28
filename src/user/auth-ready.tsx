@@ -7,13 +7,13 @@ import { useAuthState } from '@/user/auth-context'
 export const AuthReady: FunctionComponent = ({ children }) => {
   const { isReady } = useAuthState()
 
-  if (isReady) {
-    return <>{children}</>
+  if (!isReady) {
+    return (
+      <div className='block has-text-grey has-text-centered'>
+        <FontAwesomeIcon icon={faCompass} size='4x' spin />
+      </div>
+    )
   }
 
-  return (
-    <div className='block has-text-grey'>
-      <FontAwesomeIcon icon={faCompass} size='4x' spin />
-    </div>
-  )
+  return <>{children}</>
 }
