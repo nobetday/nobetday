@@ -1,5 +1,10 @@
+export interface HiddenInfo {
+  readonly email?: string
+}
+
 export interface AuthUser {
   readonly id: string
+  readonly hiddenInfo: HiddenInfo
 }
 
 export const getNameFromId = (id: string) => {

@@ -24,8 +24,8 @@ const listenToAuthStateChange = (authActions: AuthActions) => {
       return
     }
 
-    const { uid } = firebaseUser
-    authActions.setUser({ id: uid })
+    const { uid, email } = firebaseUser
+    authActions.setUser({ id: uid, hiddenInfo: { email: email || undefined } })
   })
 }
 
