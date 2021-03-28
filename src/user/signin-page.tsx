@@ -24,7 +24,9 @@ const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
 
   return (
     <div className='block'>
-      <p className='subtitle is-2'>{getNameFromId(user.id)}</p>
+      <p className='subtitle is-4'>
+        <TextLink href='/account'>{getNameFromId(user.id)}</TextLink>
+      </p>
       <button onClick={signOut} className='button is-dark'>
         SIGN OUT
       </button>

@@ -73,7 +73,7 @@ const NavbarEnd: FunctionComponent = () => {
         {isReady && (
           <>
             {user ? (
-              <ButtonLink href='/signin' className='is-dark'>
+              <ButtonLink href='/account' className='is-dark'>
                 <span className='icon is-large'>
                   <FontAwesomeIcon icon={faUserShield} size='lg' />
                 </span>
