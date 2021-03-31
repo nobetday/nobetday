@@ -2,6 +2,7 @@ import { faSort } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { NextRouter, useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import { FunctionComponent, useEffect } from 'react'
 
 import { ContentBox } from '@/common/content-box'
@@ -75,6 +76,13 @@ export const SignInPage: NextPage = () => {
   return (
     <>
       <PageHead title='Sign In' />
+      <NextSeo
+        canonical='https://nobetday.com/signin'
+        openGraph={{
+          url: 'https://nobetday.com/signin',
+          title: 'Sign In',
+        }}
+      />
       <main>
         <ContentBox className='has-text-centered'>
           <div className='mb-6'>

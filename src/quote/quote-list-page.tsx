@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import { useEffect, useState } from 'react'
 
 import { ContentBox } from '@/common/content-box'
@@ -34,6 +35,15 @@ export const QuoteListPage: NextPage<QuoteListPageProps> = ({ pageId }) => {
 
   return (
     <PageLayout title='Quotes' subtitle={quoteDescription}>
+      <NextSeo
+        description={quoteDescription}
+        canonical='https://nobetday.com/quotes'
+        openGraph={{
+          url: 'https://nobetday.com/quotes',
+          title: 'Quotes',
+          description: `${quoteDescription}`,
+        }}
+      />
       <ContentBox>
         {selectedQuote && (
           <PageModal onClose={handleSelectedQuoteClose}>

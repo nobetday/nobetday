@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import { useEffect, useState } from 'react'
 
 import { ContentBox } from '@/common/content-box'
@@ -34,6 +35,15 @@ export const StoryListPage: NextPage<StoryListPageProps> = ({ pageId }) => {
 
   return (
     <PageLayout title='Stories' subtitle={storyDescription}>
+      <NextSeo
+        description={storyDescription}
+        canonical='https://nobetday.com/stories'
+        openGraph={{
+          url: 'https://nobetday.com/stories',
+          title: 'Stories',
+          description: `${storyDescription}`,
+        }}
+      />
       <ContentBox>
         {selectedStory && (
           <PageModal onClose={handleSelectedStoryClose}>
