@@ -14,6 +14,10 @@ $footer-background-color: #EEE;
 
 @import "~bulma/bulma.sass";
 
+main {
+  min-height: 24rem;
+}
+
 .navbar-brand .navbar-item {
   background-color: inherit !important;
 }
