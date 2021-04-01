@@ -1,6 +1,7 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import { FunctionComponent, useState } from 'react'
 
 import { ContentBox } from '@/common/content-box'
@@ -45,6 +46,7 @@ export const AccountPage: NextPage = () => {
 
   return (
     <PageLayout title='Account' subtitle={user ? getNameFromId(user.id) : undefined}>
+      <NextSeo noindex nofollow />
       <ContentBox>
         <AuthReady>
           {user ? (

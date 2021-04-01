@@ -2,10 +2,10 @@ import { faSort } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { NextRouter, useRouter } from 'next/router'
+import { NextSeo, NextSeoProps } from 'next-seo'
 import { FunctionComponent, useEffect } from 'react'
 
 import { ContentBox } from '@/common/content-box'
-import { PageHead } from '@/common/page-head'
 import { getQueryValue } from '@/common/query'
 import { TextLink } from '@/common/text-link'
 import { uiConstants } from '@/common/ui-constants'
@@ -62,6 +62,17 @@ const checkRedirect = (router: NextRouter) => {
   }
 }
 
+const signinPageTitle = 'Sign In'
+const signinPageDescription = `Sign in to ${uiConstants.appName}`
+const signinPageSeoProps: NextSeoProps = {
+  title: signinPageTitle,
+  description: signinPageDescription,
+  openGraph: {
+    title: signinPageTitle,
+    description: signinPageDescription,
+  },
+}
+
 export const SignInPage: NextPage = () => {
   const router = useRouter()
   const { user } = useAuthState()
@@ -74,7 +85,7 @@ export const SignInPage: NextPage = () => {
 
   return (
     <>
-      <PageHead title='Sign In' />
+      <NextSeo {...signinPageSeoProps} />
       <main>
         <ContentBox className='has-text-centered'>
           <div className='mb-6'>
