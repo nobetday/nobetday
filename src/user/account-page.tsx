@@ -46,15 +46,7 @@ export const AccountPage: NextPage = () => {
 
   return (
     <PageLayout title='Account' subtitle={user ? getNameFromId(user.id) : undefined}>
-      <NextSeo
-        description={user ? getNameFromId(user.id) : undefined}
-        canonical='https://nobetday.com/account'
-        openGraph={{
-          url: 'https://nobetday.com/account',
-          title: 'Account',
-          description: `${user ? getNameFromId(user.id) : undefined}`,
-        }}
-      />
+      <NextSeo noindex nofollow />
       <ContentBox>
         <AuthReady>
           {user ? (

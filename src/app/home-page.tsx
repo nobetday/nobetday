@@ -1,12 +1,13 @@
 import { NextPage } from 'next'
+import { NextSeo, NextSeoProps } from 'next-seo'
 import { FunctionComponent } from 'react'
 
 import { ButtonLink } from '@/common/button-link'
 import { ContentBox } from '@/common/content-box'
 import { Navbar } from '@/common/navbar'
 import { PageFooter } from '@/common/page-footer'
-import { PageHead } from '@/common/page-head'
 import { TextLink } from '@/common/text-link'
+import { uiConstants } from '@/common/ui-constants'
 import { getQuotesInOrder, quoteDescription } from '@/quote/quote-data'
 import { QuoteDisplay } from '@/quote/quote-display'
 import { getStoriesInOrder, storyDescription } from '@/story/story-data'
@@ -15,12 +16,15 @@ import { StoryDisplay } from '@/story/story-display'
 const latestStory = getStoriesInOrder()[0]
 const latestQuote = getQuotesInOrder()[0]
 
+const homePageTitle = 'Home'
+const homePageDescription = 'Quitting Gambling Inspiration'
+
 const IntroSection: FunctionComponent = () => {
   return (
     <div className='has-background-info py-4'>
       <ContentBox>
         <section className='section is-medium has-text-centered'>
-          <h1 className='title is-1 has-text-white'>Quitting Gambling Inspiration</h1>
+          <h1 className='title is-1 has-text-white'>{homePageDescription}</h1>
           <p className='is-size-4 has-text-white'>A little help on your journey of breaking free.</p>
         </section>
       </ContentBox>
@@ -74,10 +78,20 @@ const QuoteSection: FunctionComponent = () => {
   )
 }
 
+const homePageSeoProps: NextSeoProps = {
+  title: homePageTitle,
+  description: homePageDescription,
+  openGraph: {
+    title: homePageTitle,
+    description: homePageDescription,
+    images: [{ url: `${uiConstants.webUrl}/images/V3qzwMY2ak0.jpeg` }],
+  },
+}
+
 export const HomePage: NextPage = () => {
   return (
     <>
-      <PageHead title='Home' />
+      <NextSeo {...homePageSeoProps} />
       <Navbar />
       <main>
         <IntroSection />

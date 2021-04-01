@@ -5,8 +5,9 @@ import ellipsize from 'ellipsize'
 import { FunctionComponent, MouseEvent } from 'react'
 
 import { alertToast } from '@/common/alert-toast'
+import { uiConstants } from '@/common/ui-constants'
 
-const getFullUrl = (linkPath: string): string => `${window.location.origin}${linkPath}`
+const getFullUrl = (linkPath: string): string => `${uiConstants.webUrl}${linkPath}`
 
 export interface LinkShareProps {
   readonly summary?: string

@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { NextSeo } from 'next-seo'
+import { NextSeo, NextSeoProps } from 'next-seo'
 import { useEffect, useState } from 'react'
 
 import { ContentBox } from '@/common/content-box'
@@ -8,12 +8,23 @@ import { PageLayout } from '@/common/page-layout'
 import { PageModal } from '@/common/page-modal'
 import { Pagination } from '@/common/pagination'
 import { getQueryValue } from '@/common/query'
+import { uiConstants } from '@/common/ui-constants'
 import { getStoriesInOrder, getTotalStoryPages, storiesPerPage, storyDescription } from '@/story/story-data'
 import { StoryDisplay } from '@/story/story-display'
 import { Story } from '@/story/story-model'
 
 const stories = getStoriesInOrder()
 const totalStoryPages = getTotalStoryPages()
+const storyListPageTitle = 'Stories'
+const storyListPageSeoProps: NextSeoProps = {
+  title: storyListPageTitle,
+  description: storyDescription,
+  openGraph: {
+    title: storyListPageTitle,
+    description: storyDescription,
+    images: [{ url: `${uiConstants.webUrl}${stories[0].imageUrl}` }],
+  },
+}
 
 export interface StoryListPageProps {
   readonly pageId: number
@@ -34,16 +45,8 @@ export const StoryListPage: NextPage<StoryListPageProps> = ({ pageId }) => {
   }, [router.query.id])
 
   return (
-    <PageLayout title='Stories' subtitle={storyDescription}>
-      <NextSeo
-        description={storyDescription}
-        canonical='https://nobetday.com/stories'
-        openGraph={{
-          url: 'https://nobetday.com/stories',
-          title: 'Stories',
-          description: `${storyDescription}`,
-        }}
-      />
+    <PageLayout title={storyListPageTitle} subtitle={storyDescription}>
+      <NextSeo {...storyListPageSeoProps} />
       <ContentBox>
         {selectedStory && (
           <PageModal onClose={handleSelectedStoryClose}>
