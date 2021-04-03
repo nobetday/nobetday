@@ -1,5 +1,6 @@
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Image from 'next/image'
 import { FunctionComponent } from 'react'
 
 import { LinkShareBox } from '@/common/link-share-box'
@@ -15,7 +16,7 @@ export const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story }) =>
       <div className='block'>
         <figure className='image is-2by1'>
           <a href={story.url}>
-            <img src={story.imageUrl} alt={story.title} />
+            <Image src={story.imageUrl} alt={story.title} layout='fill' />
           </a>
         </figure>
       </div>
