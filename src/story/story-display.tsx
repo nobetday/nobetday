@@ -16,7 +16,7 @@ export const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story }) =>
       <div className='block'>
         <figure className='image is-2by1'>
           <a href={story.url}>
-            <Image src={story.imageUrl} alt={story.title} layout='fill' />
+            <Image src={story.imageUrl} alt={story.title} layout='fill' objectFit='cover' />
           </a>
         </figure>
       </div>
