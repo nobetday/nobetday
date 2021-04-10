@@ -84,7 +84,7 @@ const homePageSeoProps: NextSeoProps = {
   openGraph: {
     title: homePageTitle,
     description: homePageDescription,
-    images: [{ url: `${uiConstants.webUrl}/images/V3qzwMY2ak0.jpeg` }],
+    images: [{ url: `https://nobetday-git-fix-correct-image-in-preview-link-nodelead.vercel.app/images/V3qzwMY2ak0.jpeg` }],
   },
 }
 
