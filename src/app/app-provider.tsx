@@ -15,7 +15,7 @@ const defaultSeoProps: DefaultSeoProps = {
   },
   twitter: {
     handle: '@nobetday',
-    cardType: 'summary',
+    cardType: 'summary_large_image',
   },
 }
 
