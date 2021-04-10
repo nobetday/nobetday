@@ -10,11 +10,12 @@ import { AuthContextProvider } from '@/user/auth-context'
 const defaultSeoProps: DefaultSeoProps = {
   titleTemplate: `%s - ${uiConstants.appName}`,
   openGraph: {
-    url: 'https://nobetday-git-fix-correct-image-in-preview-link-nodelead.vercel.app/'
+    type: 'website',
+    site_name: uiConstants.appName,
   },
   twitter: {
     handle: '@nobetday',
-    cardType: 'summary',
+    cardType: 'summary_large_image',
   },
 }
 
