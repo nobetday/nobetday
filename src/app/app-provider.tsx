@@ -9,10 +9,6 @@ import { AuthContextProvider } from '@/user/auth-context'
 
 const defaultSeoProps: DefaultSeoProps = {
   titleTemplate: `%s - ${uiConstants.appName}`,
-  openGraph: {
-    type: 'website',
-    site_name: uiConstants.appName,
-  },
   twitter: {
     handle: '@nobetday',
     cardType: 'summary',
