@@ -16,6 +16,8 @@ import { SignInWithEmailBlock } from '@/user/signin-with-email'
 import { SignInWithGoogleButton } from '@/user/signin-with-google'
 import { SignOutButton } from '@/user/signout-button'
 
+const AUTH_DOMAIN = process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+
 interface UserSummaryProps {
   readonly user: AuthUser
 }
@@ -41,6 +43,11 @@ const SignInBox: FunctionComponent = () => {
         </span>
       </div>
       <SignInWithGoogleButton />
+      {!AUTH_DOMAIN && (
+        <div className='block'>
+          <p className='has-text-grey'>Note: Third-party cookies must be enabled.</p>
+        </div>
+      )}
     </div>
   )
 }
