@@ -15,6 +15,8 @@ import { AuthUser, getNameFromId } from '@/user/auth-user'
 import { SignInWithEmailBlock } from '@/user/sign-in-with-email'
 import { SignInWithGoogleButton } from '@/user/sign-in-with-google'
 
+const AUTH_DOMAIN = process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+
 interface UserSummaryProps {
   readonly user: AuthUser
 }
@@ -38,7 +40,6 @@ const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
 }
 
 const SignInBox: FunctionComponent = () => {
-  const showWarning = !process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
   return (
     <div style={{ width: 400, margin: '0 auto' }}>
       <SignInWithEmailBlock />
@@ -48,7 +49,7 @@ const SignInBox: FunctionComponent = () => {
         </span>
       </div>
       <SignInWithGoogleButton />
-      {showWarning && (
+      {!AUTH_DOMAIN && (
         <div className='block'>
           <p className='has-text-grey'>Note: Third-party cookies must be enabled.</p>
         </div>
