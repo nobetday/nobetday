@@ -12,8 +12,8 @@ import { uiConstants } from '@/common/ui-constants'
 import { redirectUrlParam, useAuthActions, useAuthState } from '@/user/auth-context'
 import { AuthReady } from '@/user/auth-ready'
 import { AuthUser, getNameFromId } from '@/user/auth-user'
-import { SignInWithEmailBlock } from '@/user/sign-in-with-email'
-import { SignInWithGoogleButton } from '@/user/sign-in-with-google'
+import { SignInWithEmailBlock } from '@/user/signin-with-email'
+import { SignInWithGoogleButton } from '@/user/signin-with-google'
 
 interface UserSummaryProps {
   readonly user: AuthUser
