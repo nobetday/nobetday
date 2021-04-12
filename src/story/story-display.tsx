@@ -30,7 +30,7 @@ export const StoryDisplay: FunctionComponent<StoryDisplayProps> = ({ story }) =>
       <div className='block'>
         <p className='is-size-4'>
           <span>{story.summary}</span>
-          <a href={story.url} className='icon is-small has-text-primary ml-3'>
+          <a href={story.url} title='Read More' className='icon is-small has-text-primary ml-3'>
             <FontAwesomeIcon icon={faExternalLinkAlt} />
           </a>
         </p>

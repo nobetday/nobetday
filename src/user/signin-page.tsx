@@ -1,4 +1,4 @@
-import { faSort } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt, faSort } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { NextRouter, useRouter } from 'next/router'
@@ -28,7 +28,10 @@ const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
         <TextLink href='/account'>{getNameFromId(user.id)}</TextLink>
       </p>
       <button onClick={signOut} className='button is-dark'>
-        SIGN OUT
+        <span className='icon'>
+          <FontAwesomeIcon icon={faSignOutAlt} />
+        </span>
+        <span>SIGN OUT</span>
       </button>
     </div>
   )
