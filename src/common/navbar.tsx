@@ -1,4 +1,4 @@
-import { faUserShield } from '@fortawesome/free-solid-svg-icons'
+import { faSignInAlt, faUserShield } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
@@ -73,14 +73,18 @@ const NavbarEnd: FunctionComponent = () => {
         {isReady && (
           <>
             {user ? (
-              <ButtonLink href='/account' className='is-dark'>
-                <span className='icon is-large'>
-                  <FontAwesomeIcon icon={faUserShield} size='lg' />
+              <ButtonLink href='/account' title='Account' className='is-dark'>
+                <span className='icon'>
+                  <FontAwesomeIcon icon={faUserShield} />
                 </span>
+                <span>Account</span>
               </ButtonLink>
             ) : (
               <button onClick={signIn} className='button is-dark'>
-                SIGN IN
+                <span className='icon'>
+                  <FontAwesomeIcon icon={faSignInAlt} />
+                </span>
+                <span>SIGN IN</span>
               </button>
             )}
           </>

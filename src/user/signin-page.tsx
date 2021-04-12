@@ -9,27 +9,26 @@ import { ContentBox } from '@/common/content-box'
 import { getQueryValue } from '@/common/query'
 import { TextLink } from '@/common/text-link'
 import { uiConstants } from '@/common/ui-constants'
-import { redirectUrlParam, useAuthActions, useAuthState } from '@/user/auth-context'
+import { redirectUrlParam, useAuthState } from '@/user/auth-context'
 import { AuthReady } from '@/user/auth-ready'
 import { AuthUser, getNameFromId } from '@/user/auth-user'
-import { SignInWithEmailBlock } from '@/user/sign-in-with-email'
-import { SignInWithGoogleButton } from '@/user/sign-in-with-google'
+import { SignInWithEmailBlock } from '@/user/signin-with-email'
+import { SignInWithGoogleButton } from '@/user/signin-with-google'
+import { SignOutButton } from '@/user/signout-button'
+
+const AUTH_DOMAIN = process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
 
 interface UserSummaryProps {
   readonly user: AuthUser
 }
 
 const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
-  const { signOut } = useAuthActions()
-
   return (
     <div className='block'>
       <p className='subtitle is-4'>
         <TextLink href='/account'>{getNameFromId(user.id)}</TextLink>
       </p>
-      <button onClick={signOut} className='button is-dark'>
-        SIGN OUT
-      </button>
+      <SignOutButton />
     </div>
   )
 }
@@ -44,6 +43,11 @@ const SignInBox: FunctionComponent = () => {
         </span>
       </div>
       <SignInWithGoogleButton />
+      {!AUTH_DOMAIN && (
+        <div className='block'>
+          <p className='has-text-grey'>Note: Third-party cookies must be enabled.</p>
+        </div>
+      )}
     </div>
   )
 }
