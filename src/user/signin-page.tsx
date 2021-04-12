@@ -1,4 +1,4 @@
-import { faSignOutAlt, faSort } from '@fortawesome/free-solid-svg-icons'
+import { faSort } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { NextRouter, useRouter } from 'next/router'
@@ -9,30 +9,24 @@ import { ContentBox } from '@/common/content-box'
 import { getQueryValue } from '@/common/query'
 import { TextLink } from '@/common/text-link'
 import { uiConstants } from '@/common/ui-constants'
-import { redirectUrlParam, useAuthActions, useAuthState } from '@/user/auth-context'
+import { redirectUrlParam, useAuthState } from '@/user/auth-context'
 import { AuthReady } from '@/user/auth-ready'
 import { AuthUser, getNameFromId } from '@/user/auth-user'
 import { SignInWithEmailBlock } from '@/user/signin-with-email'
 import { SignInWithGoogleButton } from '@/user/signin-with-google'
+import { SignOutButton } from '@/user/signout-button'
 
 interface UserSummaryProps {
   readonly user: AuthUser
 }
 
 const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
-  const { signOut } = useAuthActions()
-
   return (
     <div className='block'>
       <p className='subtitle is-4'>
         <TextLink href='/account'>{getNameFromId(user.id)}</TextLink>
       </p>
-      <button onClick={signOut} className='button is-dark'>
-        <span className='icon'>
-          <FontAwesomeIcon icon={faSignOutAlt} />
-        </span>
-        <span>SIGN OUT</span>
-      </button>
+      <SignOutButton />
     </div>
   )
 }
