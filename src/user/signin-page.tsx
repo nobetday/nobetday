@@ -38,6 +38,7 @@ const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
 }
 
 const SignInBox: FunctionComponent = () => {
+  const showWarning = !process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
   return (
     <div style={{ width: 400, margin: '0 auto' }}>
       <SignInWithEmailBlock />
@@ -47,6 +48,11 @@ const SignInBox: FunctionComponent = () => {
         </span>
       </div>
       <SignInWithGoogleButton />
+      {showWarning && (
+        <div className='block'>
+          <p className='has-text-grey'>Note: Third-party cookies must be enabled.</p>
+        </div>
+      )}
     </div>
   )
 }
