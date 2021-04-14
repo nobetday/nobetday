@@ -7,7 +7,7 @@ import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react'
 
 import { ContentBox } from '@/common/content-box'
 import { firebaseStore } from '@/common/firebase'
-import { getDocument } from '@/common/firestore-document'
+import { getDocument } from '@/common/firebase-document'
 import { PageLayout } from '@/common/page-layout'
 import { AuthAlert } from '@/user/auth-alert'
 import { useAuthState } from '@/user/auth-context'

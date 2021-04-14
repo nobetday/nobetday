@@ -1,4 +1,4 @@
-import { DateField } from '@/common/firestore-document'
+import { DateField } from '@/common/firebase-document'
 
 export interface ProfileDocument {
   readonly id: string
