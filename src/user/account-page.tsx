@@ -1,12 +1,12 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
-import firebase from 'firebase/app'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react'
 
 import { ContentBox } from '@/common/content-box'
+import { firebaseStore } from '@/common/firebase'
 import { getDocument } from '@/common/firestore-document'
 import { PageLayout } from '@/common/page-layout'
 import { AuthAlert } from '@/user/auth-alert'
@@ -16,7 +16,7 @@ import { AuthUser, getNameFromId } from '@/user/auth-user'
 import { ProfileDocument } from '@/user/profile-document'
 import { SignOutButton } from '@/user/signout-button'
 
-const db = firebase.firestore()
+const db = firebaseStore()
 
 interface EmailFieldProps {
   readonly email?: string
@@ -73,7 +73,7 @@ const saveProfile = async (user: AuthUser, message: string) => {
     .doc(user.id)
     .set({
       message,
-      messageUpdatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      messageUpdatedAt: firebaseStore.FieldValue.serverTimestamp(),
     })
 }
 

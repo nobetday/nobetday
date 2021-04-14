@@ -1,15 +1,16 @@
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
-import firebase from 'firebase/app'
 import { FunctionComponent, useState } from 'react'
+
+import { firebaseAuth } from '@/common/firebase'
 
 export const SignInWithGoogleButton: FunctionComponent = () => {
   const [isLoading, setLoading] = useState(false)
   const handleClick = async () => {
     setLoading(true)
-    const provider = new firebase.auth.GoogleAuthProvider()
-    await firebase.auth().signInWithRedirect(provider)
+    const provider = new firebaseAuth.GoogleAuthProvider()
+    await firebaseAuth().signInWithRedirect(provider)
   }
 
   return (
