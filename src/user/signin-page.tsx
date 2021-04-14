@@ -35,7 +35,7 @@ const UserSummary: FunctionComponent<UserSummaryProps> = ({ user }) => {
 
 const SignInBox: FunctionComponent = () => {
   return (
-    <div style={{ width: 400, margin: '0 auto' }}>
+    <div style={{ width: 420, margin: '0 auto' }}>
       <SignInWithEmailBlock />
       <div className='block'>
         <span className='icon is-medium has-text-grey-light'>

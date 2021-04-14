@@ -118,7 +118,7 @@ export const SignInWithEmailBlock: FunctionComponent = () => {
     <div className='block'>
       {message && (
         <div className={clsx('notification', message.type)}>
-          <p className='is-size-4'>{message.content}</p>
+          <p className='is-size-5'>{message.content}</p>
         </div>
       )}
       <SignInWithEmailForm email={email} setEmail={setEmail} isLoading={isLoading} onSubmit={handleSubmit} />
