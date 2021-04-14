@@ -16,6 +16,8 @@ import { AuthUser, getNameFromId } from '@/user/auth-user'
 import { ProfileDocument } from '@/user/profile-document'
 import { SignOutButton } from '@/user/signout-button'
 
+const db = firebase.firestore()
+
 interface EmailFieldProps {
   readonly email?: string
 }
@@ -66,22 +68,16 @@ const MessageField: FunctionComponent<MessageFieldProps> = ({ message, onChange 
 }
 
 const saveProfile = async (user: AuthUser, message: string) => {
-  const db = firebase.firestore()
-  const profileRef = db.collection('profiles').doc(user.id)
-  await db.runTransaction(async (transaction) => {
-    const profileSnapshot = await transaction.get(profileRef)
-    const profileDoc = getDocument<ProfileDocument>(profileSnapshot)
-    await transaction.set(profileRef, {
-      ...profileDoc,
-      id: user.id,
+  await db
+    .collection('profiles')
+    .doc(user.id)
+    .set({
       message,
       messageUpdatedAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
-  })
 }
 
 const loadProfile = async (user: AuthUser): Promise<ProfileDocument | undefined> => {
-  const db = firebase.firestore()
   const profileSnapshot = await db
     .collection('profiles')
     .doc(user.id)
@@ -95,12 +91,12 @@ interface AccountSettingsProps {
 
 const AccountSettings: FunctionComponent<AccountSettingsProps> = ({ user }) => {
   const [message, setMessage] = useState<string>('')
-  const [isLoading, setLoading] = useState(false)
+  const [isSaving, setSaving] = useState(false)
 
   const handleSave = async () => {
-    setLoading(true)
+    setSaving(true)
     await saveProfile(user, message)
-    setLoading(false)
+    setSaving(false)
   }
 
   useEffect(() => {
@@ -117,7 +113,7 @@ const AccountSettings: FunctionComponent<AccountSettingsProps> = ({ user }) => {
       <MessageField message={message} onChange={setMessage} />
       <div className='field is-grouped'>
         <div className='control'>
-          <button onClick={handleSave} className={clsx('button is-primary', isLoading && 'is-loading')}>
+          <button onClick={handleSave} className={clsx('button is-primary', isSaving && 'is-loading')}>
             Save
           </button>
         </div>
