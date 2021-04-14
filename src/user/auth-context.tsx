@@ -1,7 +1,7 @@
-import firebase from 'firebase/app'
 import { useRouter } from 'next/router'
 import { createContext, FunctionComponent, useContext, useEffect, useMemo, useState } from 'react'
 
+import { firebaseAuth } from '@/common/firebase'
 import { AuthUser } from '@/user/auth-user'
 
 export const redirectUrlParam = 'continue'
@@ -18,7 +18,7 @@ export interface AuthActions {
 }
 
 const listenToAuthStateChange = (authActions: AuthActions) => {
-  firebase.auth().onAuthStateChanged(async (firebaseUser) => {
+  firebaseAuth().onAuthStateChanged(async (firebaseUser) => {
     if (!firebaseUser) {
       authActions.setUser()
       return
@@ -42,7 +42,7 @@ const useAuthContext = () => {
         router.push(authState.user ? '/signin' : `/signin?${redirectUrlParam}=${encodeURIComponent(router.asPath)}`)
       },
       signOut: async () => {
-        await firebase.auth().signOut()
+        await firebaseAuth().signOut()
       },
     }),
     [router, authState],

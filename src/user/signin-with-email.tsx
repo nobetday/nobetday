@@ -1,16 +1,16 @@
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
-import firebase from 'firebase/app'
 import { ChangeEvent, FunctionComponent, KeyboardEvent, useEffect, useState } from 'react'
 import store from 'store2'
 
 import { AlertMessage } from '@/common/alert-message'
+import { firebaseAuth } from '@/common/firebase'
 
 const EMAIL_FOR_SIGN_IN = 'EMAIL_FOR_SIGN_IN'
 
 const checkSignInWithEmail = async (setMessage: (message: AlertMessage | undefined) => void) => {
-  if (!firebase.auth().isSignInWithEmailLink(window.location.href)) {
+  if (!firebaseAuth().isSignInWithEmailLink(window.location.href)) {
     return
   }
 
@@ -22,7 +22,7 @@ const checkSignInWithEmail = async (setMessage: (message: AlertMessage | undefin
 
   setMessage({ content: 'Authenticating...', type: 'is-info' })
   try {
-    await firebase.auth().signInWithEmailLink(email, window.location.href)
+    await firebaseAuth().signInWithEmailLink(email, window.location.href)
   } catch (err) {
     setMessage({ content: err.message, type: 'is-danger' })
   }
@@ -37,10 +37,10 @@ const signInWithEmail = async (
   setLoading(true)
   setMessage(undefined)
   try {
-    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-      await firebase.auth().signInWithEmailLink(email, window.location.href)
+    if (firebaseAuth().isSignInWithEmailLink(window.location.href)) {
+      await firebaseAuth().signInWithEmailLink(email, window.location.href)
     } else {
-      await firebase.auth().sendSignInLinkToEmail(email, {
+      await firebaseAuth().sendSignInLinkToEmail(email, {
         url: window.location.href,
         handleCodeInApp: true,
       })
