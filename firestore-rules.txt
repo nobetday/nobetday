@@ -1,0 +1,18 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSameUser (userId) {
+      return request.auth.uid == userId;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    match /profiles/{userId} {
+      allow write: if isSameUser(userId);
+      allow read;
+    }
+  }
+}

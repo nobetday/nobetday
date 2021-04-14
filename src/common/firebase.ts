@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import { ensureEnv } from '@/common/env'
 
 require('firebase/auth')
+require('firebase/firestore')
 
 const PROJECT_ID = ensureEnv('NEXT_PUBLIC_FIREBASE_PROJECT_ID', process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID)
 const APP_ID = ensureEnv('NEXT_PUBLIC_FIREBASE_APP_ID', process.env.NEXT_PUBLIC_FIREBASE_APP_ID)
