@@ -117,7 +117,7 @@ export const SignInWithEmailBlock: FunctionComponent = () => {
   return (
     <div className='block'>
       {message && (
-        <div className={clsx('notification', message.type)}>
+        <div className={clsx('notification is-light', message.type)}>
           <p className='is-size-5'>{message.content}</p>
         </div>
       )}
