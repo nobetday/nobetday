@@ -67,14 +67,22 @@ const MessageField: FunctionComponent<MessageFieldProps> = ({ message, onChange 
   )
 }
 
-const saveProfile = async (user: AuthUser, message: string) => {
+const saveProfile = async (user: AuthUser, profileDoc: ProfileDocument | undefined, message: string) => {
   await db
     .collection('profiles')
     .doc(user.id)
-    .set({
-      message,
-      messageUpdatedAt: firebaseStore.FieldValue.serverTimestamp(),
-    })
+    .set(
+      {
+        message: message
+          ? {
+              content: message,
+              updatedAt: firebaseStore.FieldValue.serverTimestamp(),
+              ...(profileDoc?.message?.createdAt ? {} : { createdAt: firebaseStore.FieldValue.serverTimestamp() }),
+            }
+          : firebaseStore.FieldValue.delete(),
+      },
+      { merge: true },
+    )
 }
 
 const loadProfile = async (user: AuthUser): Promise<ProfileDocument | undefined> => {
@@ -90,22 +98,24 @@ interface AccountSettingsProps {
 }
 
 const AccountSettings: FunctionComponent<AccountSettingsProps> = ({ user }) => {
+  const [profileDoc, setProfileDoc] = useState<ProfileDocument | undefined>()
   const [message, setMessage] = useState<string>('')
   const [isSaving, setSaving] = useState(false)
 
   const handleSave = async () => {
     setSaving(true)
-    await saveProfile(user, message)
+    await saveProfile(user, profileDoc, message.trim())
+    setProfileDoc(await loadProfile(user))
     setSaving(false)
   }
 
   useEffect(() => {
-    loadProfile(user).then((profileDoc) => {
-      if (profileDoc) {
-        setMessage(profileDoc.message)
-      }
-    })
+    loadProfile(user).then(setProfileDoc)
   }, [user])
+
+  useEffect(() => {
+    setMessage(profileDoc?.message?.content || '')
+  }, [profileDoc])
 
   return (
     <section className='section'>
