@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { NextSeo, NextSeoProps } from 'next-seo'
-import { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { ButtonLink } from '@/common/button-link'
 import { ContentBox } from '@/common/content-box'
@@ -8,6 +8,9 @@ import { Navbar } from '@/common/navbar'
 import { PageFooter } from '@/common/page-footer'
 import { TextLink } from '@/common/text-link'
 import { uiConstants } from '@/common/ui-constants'
+import { getMessagesInOrder, messageDescription } from '@/message/message-data'
+import { MessageDisplay } from '@/message/message-display'
+import { Message } from '@/message/message-model'
 import { getQuotesInOrder, quoteDescription } from '@/quote/quote-data'
 import { QuoteDisplay } from '@/quote/quote-display'
 import { getStoriesInOrder, storyDescription } from '@/story/story-data'
@@ -78,6 +81,37 @@ const QuoteSection: FunctionComponent = () => {
   )
 }
 
+const MessageSection: FunctionComponent = () => {
+  const [latestMessage, setLatestMessage] = useState<Message | undefined>()
+  useEffect(() => {
+    getMessagesInOrder().then((messages) => setLatestMessage(messages[0]))
+  }, [])
+  return (
+    <>
+      <section className='section'>
+        <h2 className='title is-1'>
+          <TextLink href='/messages' className='has-text-dark'>
+            Messages
+          </TextLink>
+        </h2>
+        <p className='subtitle is-3'>{messageDescription}</p>
+      </section>
+      <section className='section'>
+        {latestMessage && (
+          <>
+            <MessageDisplay message={latestMessage} />
+            <div className='block has-text-right'>
+              <ButtonLink href='/messages' className='is-outlined is-primary'>
+                VIEW ALL MESSAGES
+              </ButtonLink>
+            </div>
+          </>
+        )}
+      </section>
+    </>
+  )
+}
+
 const homePageSeoProps: NextSeoProps = {
   title: homePageTitle,
   description: homePageDescription,
@@ -98,6 +132,7 @@ export const HomePage: NextPage = () => {
         <ContentBox className='py-5'>
           <StorySection />
           <QuoteSection />
+          <MessageSection />
         </ContentBox>
       </main>
       <PageFooter />

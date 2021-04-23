@@ -6,7 +6,7 @@ import { ContentBox } from '@/common/content-box'
 import { PageLayout } from '@/common/page-layout'
 import { Pagination } from '@/common/pagination'
 import { uiConstants } from '@/common/ui-constants'
-import { getMessages, getTotalMessagePages, messageDescription, messagesPerPage } from '@/message/message-data'
+import { getMessagesInOrder, getTotalMessagePages, messageDescription, messagesPerPage } from '@/message/message-data'
 import { MessageDisplay } from '@/message/message-display'
 import { Message } from '@/message/message-model'
 
@@ -29,7 +29,7 @@ export const MessageListPage: NextPage<MessageListPageProps> = ({ pageId }) => {
   const [totalMessagePages, setTotalMessagePages] = useState(0)
 
   useEffect(() => {
-    getMessages().then((messages) =>
+    getMessagesInOrder().then((messages) =>
       setMessages(messages.slice((pageId - 1) * messagesPerPage, pageId * messagesPerPage)),
     )
     getTotalMessagePages().then((totalMessagePages) => setTotalMessagePages(totalMessagePages))
@@ -40,7 +40,7 @@ export const MessageListPage: NextPage<MessageListPageProps> = ({ pageId }) => {
       <NextSeo {...messageListPageSeoProps} />
       <ContentBox>
         {messages.map((message) => (
-          <section key={message.id} className='section'>
+          <section key={message.userId} className='section'>
             <MessageDisplay message={message} />
           </section>
         ))}

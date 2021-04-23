@@ -9,27 +9,30 @@ let allMessages: Message[]
 
 export const messageDescription = 'Messages Description'
 
-export const getMessages = async (): Promise<Message[]> => {
+export const getMessagesInOrder = async (): Promise<Message[]> => {
   if (!allMessages) {
     const profileSnapshots = await db.collection('profiles').get()
-    allMessages = profileSnapshots.docs.reduce((result: Message[], profileSnapshot: DocumentSnapshot) => {
-      const profileDocument = getDocument<ProfileDocument>(profileSnapshot)
-      if (profileDocument) {
-        result.push({
-          id: getNameFromId(profileSnapshot.id),
-          content: profileDocument.message,
-          updatedAt: profileDocument.messageUpdatedAt.toDate().toISOString(),
-        })
-      }
-      return result
-    }, [])
+    allMessages = profileSnapshots.docs
+      .reduce((result: Message[], profileSnapshot: DocumentSnapshot) => {
+        const profileDocument = getDocument<ProfileDocument>(profileSnapshot)
+        if (profileDocument && profileDocument.message) {
+          result.push({
+            userId: getNameFromId(profileSnapshot.id),
+            content: profileDocument.message.content,
+            createdAt: profileDocument.message.createdAt.toDate().toISOString(),
+            updatedAt: profileDocument.message.updatedAt.toDate().toISOString(),
+          })
+        }
+        return result
+      }, [])
+      .sort((message1, message2) => new Date(message2.createdAt).getTime() - new Date(message1.createdAt).getTime())
   }
   return allMessages
 }
 
-export const messagesPerPage = 1
+export const messagesPerPage = 10
 
 export const getTotalMessagePages = async () => {
-  const message = await getMessages()
+  const message = await getMessagesInOrder()
   return Math.ceil(message.length / messagesPerPage)
 }

@@ -1,5 +1,6 @@
 export interface Message {
-  readonly id: string
+  readonly userId: string
   readonly content: string
+  readonly createdAt: string
   readonly updatedAt: string
 }

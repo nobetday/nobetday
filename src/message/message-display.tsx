@@ -10,7 +10,7 @@ export const MessageDisplay: FunctionComponent<MessageDisplayProps> = ({ message
   return (
     <>
       <div className='block'>
-        <h2 className='subtitle is-2 has-text-dark'>{message.id}</h2>
+        <h2 className='subtitle is-2 has-text-dark'>{message.userId}</h2>
       </div>
       <div className='block message-content pl-4 py-4'>
         <p className='is-size-4'>{message.content}</p>
