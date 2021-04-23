@@ -25,7 +25,7 @@ export const getMessagesInOrder = async (): Promise<Message[]> => {
         }
         return result
       }, [])
-      .sort((message1, message2) => new Date(message2.createdAt).getTime() - new Date(message1.createdAt).getTime())
+      .sort((message1, message2) => message2.createdAt.localeCompare(message1.createdAt))
   }
   return allMessages
 }

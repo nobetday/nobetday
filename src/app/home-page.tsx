@@ -1,6 +1,6 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { NextSeo, NextSeoProps } from 'next-seo'
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent } from 'react'
 
 import { ButtonLink } from '@/common/button-link'
 import { ContentBox } from '@/common/content-box'
@@ -81,11 +81,11 @@ const QuoteSection: FunctionComponent = () => {
   )
 }
 
-const MessageSection: FunctionComponent = () => {
-  const [latestMessage, setLatestMessage] = useState<Message | undefined>()
-  useEffect(() => {
-    getMessagesInOrder().then((messages) => setLatestMessage(messages[0]))
-  }, [])
+interface MessageSectionProps {
+  readonly latestMessage: Message
+}
+
+const MessageSection: FunctionComponent<MessageSectionProps> = ({ latestMessage }) => {
   return (
     <>
       <section className='section'>
@@ -97,16 +97,12 @@ const MessageSection: FunctionComponent = () => {
         <p className='subtitle is-3'>{messageDescription}</p>
       </section>
       <section className='section'>
-        {latestMessage && (
-          <>
-            <MessageDisplay message={latestMessage} />
-            <div className='block has-text-right'>
-              <ButtonLink href='/messages' className='is-outlined is-primary'>
-                VIEW ALL MESSAGES
-              </ButtonLink>
-            </div>
-          </>
-        )}
+        <MessageDisplay message={latestMessage} />
+        <div className='block has-text-right'>
+          <ButtonLink href='/messages' className='is-outlined is-primary'>
+            VIEW ALL MESSAGES
+          </ButtonLink>
+        </div>
       </section>
     </>
   )
@@ -122,7 +118,18 @@ const homePageSeoProps: NextSeoProps = {
   },
 }
 
-export const HomePage: NextPage = () => {
+export interface HomePageProps {
+  readonly latestMessage: Message
+}
+
+export const getHomePageStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const latestMessage = (await getMessagesInOrder())[0]
+  return {
+    props: { latestMessage },
+  }
+}
+
+export const HomePage: NextPage<HomePageProps> = ({ latestMessage }) => {
   return (
     <>
       <NextSeo {...homePageSeoProps} />
@@ -132,7 +139,7 @@ export const HomePage: NextPage = () => {
         <ContentBox className='py-5'>
           <StorySection />
           <QuoteSection />
-          <MessageSection />
+          <MessageSection latestMessage={latestMessage} />
         </ContentBox>
       </main>
       <PageFooter />
