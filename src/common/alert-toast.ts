@@ -1,5 +1,6 @@
-import { AlertMessage } from '@/common/alert-message'
 import { toast } from 'bulma-toast'
+
+import { AlertMessage } from '@/common/alert-message'
 
 export const alertToast = (message: AlertMessage) => {
   toast({
