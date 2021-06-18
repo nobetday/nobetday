@@ -39,7 +39,7 @@
     "@types/ellipsize": "0.1.0",
     "@types/react": "17.0.3",
     "cross-env": "7.0.3",
-    "del-cli": "3.0.1",
+    "del-cli": "4.0.0",
     "eslint-plugin-no-null": "1.0.2",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "next-compose-plugins": "2.2.1",
