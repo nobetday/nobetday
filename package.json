@@ -40,11 +40,13 @@
     "@types/react": "17.0.11",
     "cross-env": "7.0.3",
     "del-cli": "4.0.0",
+    "eslint-config-next": "11.0.0",
     "eslint-plugin-no-null": "1.0.2",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "next-compose-plugins": "2.2.1",
     "querystring": "0.2.1",
     "sass": "1.35.1",
-    "tsdx": "0.14.1"
+    "tsdx": "0.14.1",
+    "typescript": "4.3.4"
   }
 }
