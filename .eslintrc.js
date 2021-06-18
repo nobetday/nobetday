@@ -1,4 +1,7 @@
 module.exports = {
+  extends: [
+    'next',
+  ],
   plugins: [
     'no-null',
     'simple-import-sort',
@@ -12,6 +15,7 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'react/react-in-jsx-scope': 'off',
+    'react/display-name': 'off',
     'jsx-quotes': ['error', 'prefer-single'],
   },
 }
