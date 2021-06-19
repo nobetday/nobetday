@@ -15,7 +15,9 @@ export const PageHead: FunctionComponent = memo(() => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <style type='text/css'>{fontawesomeDom.css()}</style>
       </NextHead>
-      {!!PLAUSIBLE_DOMAIN && <NextScript src='https://plausible.io/js/plausible.js' data-domain={PLAUSIBLE_DOMAIN} />}
+      {!!PLAUSIBLE_DOMAIN && (
+        <NextScript async defer data-domain={PLAUSIBLE_DOMAIN} src='https://plausible.io/js/plausible.js' />
+      )}
     </>
   )
 })
