@@ -10,10 +10,12 @@ const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
 
 export const PageHead: FunctionComponent = memo(() => {
   return (
-    <NextHead>
-      <meta name='viewport' content='width=device-width, initial-scale=1' />
-      <style type='text/css'>{fontawesomeDom.css()}</style>
+    <>
+      <NextHead>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <style type='text/css'>{fontawesomeDom.css()}</style>
+      </NextHead>
       {!!plausibleDomain && <NextScript src='https://plausible.io/js/plausible.js' data-domain={plausibleDomain} />}
-    </NextHead>
+    </>
   )
 })
