@@ -1,11 +1,6 @@
 module.exports = {
-  extends: [
-    'next',
-  ],
-  plugins: [
-    'no-null',
-    'simple-import-sort',
-  ],
+  extends: ['next', 'next/core-web-vitals'],
+  plugins: ['no-null', 'simple-import-sort'],
   rules: {
     'max-lines': ['error', { max: 200, skipBlankLines: true, skipComments: true }],
     'max-lines-per-function': ['error', { max: 40, skipBlankLines: true, skipComments: true }],
