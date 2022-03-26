@@ -14,7 +14,7 @@
     "quote": "node scripts/quote-cli"
   },
   "engines": {
-    "node": "14.17.1"
+    "node": "16.14.2"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.35",
